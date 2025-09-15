@@ -1,0 +1,17 @@
+\frametitle{Python Shared Output}
+    \begin{lstlisting}
+# Points labeled with coordinates
+plt.plot(Ax, Ay, 'ro')
+plt.text(Ax+0.1, Ay+0.1, f'A({Ax}, {Ay})', fontsize=12, color='red')
+
+plt.plot(Bx, By, 'go')
+plt.text(Bx+0.1, By+0.1, f'B({Bx}, {By})', fontsize=12, color='green')
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Line through points A and B (computed via C + ctypes)')
+plt.grid(True)
+plt.axis('equal')
+plt.legend()
+plt.show()
+ \end{lstlisting}
