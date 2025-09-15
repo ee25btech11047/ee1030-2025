@@ -1,0 +1,18 @@
+\frametitle{Python Shared Output}
+    \begin{lstlisting}
+    return col1.tolist(), col2.tolist(), r
+
+if __name__ == "__main__":
+    a = [1, 2]
+    b = [3, 1]
+    for k in [0, 1, 2]:
+        col1, col2, r = compute_rank(a, b, k)
+        print(f"\nFor k={k}:")
+        for i in range(len(a)):
+            print(f"[{col1[i]:3d}  {col2[i]:3d}]")
+        print("Rank =", r)
+        if r <= 1:
+            print("=> Collinear")
+        else:
+            print("=> Not collinear")
+    \end{lstlisting}
