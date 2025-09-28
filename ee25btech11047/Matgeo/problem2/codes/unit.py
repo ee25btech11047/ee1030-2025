@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 # local imports (not used here, but kept for consistency with your project)
-from line.funcs import *
-from triangle.funcs import *
-from conics.funcs import circ_gen
+from libs.line.funcs import *
+from libs.triangle.funcs import *
+from libs.conics.funcs import circ_gen
 
 # Vectors from ctypes example
 a = np.array([2.0, -1.0, 1.0])
