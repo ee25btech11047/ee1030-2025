@@ -1,0 +1,15 @@
+\frametitle{Python Shared}
+\begin{lstlisting}
+A_flat = A.flatten()
+x_out = np.zeros(3, dtype=np.float64)
+
+# Call the C function
+status = lib.solve_system(A_flat.ctypes.data_as(ctypes.POINTER(ctypes.c_double)),
+                          x_out.ctypes.data_as(ctypes.POINTER(ctypes.c_double)))
+
+if status == 1:
+    print("System is inconsistent -> No solution")
+else:
+    print("Solution:", x_out)
+
+\end{lstlisting}
