@@ -1,0 +1,19 @@
+\frametitle{Python Shared}
+\begin{lstlisting}
+for i, txt in enumerate(labels):
+    plt.annotate(f'{txt}({rect_coords[0,i]:.0f},{rect_coords[1,i]:.0f})',
+                 (rect_coords[0,i], rect_coords[1,i]),
+                 textcoords="offset points", xytext=(-10,5), ha='center')
+
+ax = plt.gca()
+ax.spines['top'].set_color('none')
+ax.spines['right'].set_color('none')
+ax.spines['left'].set_position('zero')
+ax.spines['bottom'].set_position('zero')
+
+plt.grid()
+plt.axis('equal')
+plt.legend()
+plt.show()
+
+\end{lstlisting}

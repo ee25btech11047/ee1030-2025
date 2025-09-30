@@ -1,0 +1,19 @@
+\frametitle{Python Shared}
+      \begin{lstlisting}
+# -------- Plotting --------
+x = np.linspace(-4, 4, 20)
+y = np.linspace(-4, 4, 20)
+X, Y = np.meshgrid(x, y)
+
+def plane_eq(normal, X, Y):
+    a, b, c = normal
+    if abs(c) < 1e-6:
+        return np.full_like(X, np.nan)
+    return (1 - a*X - b*Y) / c
+
+Z1 = plane_eq(n_case1, X, Y)
+Z2 = plane_eq(n_case2, X, Y)
+
+fig = plt.figur
+
+      \end{lstlisting}
