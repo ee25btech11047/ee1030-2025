@@ -1,0 +1,294 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+	breakable=true,
+	listing engine=minted,
+	listing only,
+	minted language=#2,
+	minted style=default,
+	minted options={%
+		linenos,
+		gobble=0,
+		breaklines=true,
+		breakafter=,,
+		fontsize=\small,
+		numbersep=8pt,
+		#1},
+	boxsep=0pt,
+	left skip=0pt,
+	right skip=0pt,
+	left=25pt,
+	right=0pt,
+	top=3pt,
+	bottom=3pt,
+	arc=5pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=2pt,
+	toprule=2pt,
+	colback=bg,
+	colframe=orange!70,
+	enhanced,
+	overlay={%
+		\begin{tcbclipinterior}
+			\fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+	\end{tcbclipinterior}},
+	#3,
+}
+\lstset{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	commentstyle=\color{green!60!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{5.4.41}
+%\subtitle{A short story}
+
+\author % (optional)
+{RAVULA SHASHANK REDDY - EE25BTECH11047}
+
+ \begin{document}
+	
+	
+	\frame{\titlepage}
+	\begin{frame}{Question}
+    Using elementary transformations, find the inverse of the matrix
+\begin{align*}
+    A=\myvec{2 & 1 & 3 \\[4pt] 4 & -1 & 0 \\[4pt] -7 & 2 & 1}.
+\end{align*}
+
+\end{frame}
+\begin{frame}{Solution}
+
+    \begin{align}
+    A.A^{-1}&=I\\
+    [A\mid I] &= 
+\myvec{2 & 1 & 3 & 1 & 0 & 0 \\[4pt]
+       4 & -1 & 0 & 0 & 1 & 0 \\[4pt]
+      -7 & 2 & 1 & 0 & 0 & 1}
+\end{align}
+
+\begin{align}
+&\xrightarrow{R_1 \to \tfrac12 R_1}
+\myvec{1 & \tfrac12 & \tfrac32 & \tfrac12 & 0 & 0 \\
+       4 & -1 & 0 & 0 & 1 & 0 \\
+      -7 & 2 & 1 & 0 & 0 & 1}
+\end{align}
+
+\begin{align}
+&\xrightarrow{R_2 \to R_2-4R_1,\; R_3 \to R_3+7R_1}
+\myvec{1 & \tfrac12 & \tfrac32 & \tfrac12 & 0 & 0 \\
+       0 & -3 & -6 & -2 & 1 & 0 \\
+       0 & \tfrac{11}{2} & \tfrac{23}{2} & \tfrac{7}{2} & 0 & 1}
+\end{align}
+
+\end{frame}
+\begin{frame}{Solution}
+\begin{align}
+&\xrightarrow{R_2 \to -\tfrac13 R_2}
+\myvec{1 & \tfrac12 & \tfrac32 & \tfrac12 & 0 & 0 \\
+       0 & 1 & 2 & \tfrac23 & -\tfrac13 & 0 \\
+       0 & \tfrac{11}{2} & \tfrac{23}{2} & \tfrac{7}{2} & 0 & 1}
+\end{align}
+
+\begin{align}
+&\xrightarrow{R_1 \to R_1-\tfrac12R_2,\; R_3 \to R_3-\tfrac{11}{2}R_2}
+\myvec{1 & 0 & \tfrac12 & \tfrac16 & \tfrac16 & 0 \\
+       0 & 1 & 2 & \tfrac23 & -\tfrac13 & 0 \\
+       0 & 0 & \tfrac12 & -\tfrac16 & \tfrac{11}{6} & 1}
+\end{align}
+
+\begin{align}
+&\xrightarrow{R_3 \to 2R_3}
+\myvec{1 & 0 & \tfrac12 & \tfrac16 & \tfrac16 & 0 \\
+       0 & 1 & 2 & \tfrac23 & -\tfrac13 & 0 \\
+       0 & 0 & 1 & -\tfrac13 & \tfrac{11}{3} & 2}
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+\begin{align}
+&\xrightarrow{R_1 \to R_1-\tfrac12R_3,\; R_2 \to R_2-2R_3}
+\myvec{1 & 0 & 0 & \tfrac13 & -\tfrac53 & -1 \\
+       0 & 1 & 0 & \tfrac43 & -\tfrac{23}{3} & -4 \\
+       0 & 0 & 1 & -\tfrac13 & \tfrac{11}{3} & 2}
+\end{align}
+
+\begin{align}
+A^{-1} &=
+\myvec{\tfrac13 & -\tfrac53 & -1 \\[6pt]
+       \tfrac43 & -\tfrac{23}{3} & -4 \\[6pt]
+       -\tfrac13 & \tfrac{11}{3} & 2}
+\end{align}
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{C Code}
+    \begin{lstlisting}
+    #include <stdio.h>
+
+int main() {
+    int i, j, k;
+    double A[3][3] = {
+        {2, 1, 3},
+        {4, -1, 0},
+        {-7, 2, 1}
+    };
+
+    double I[3][3] = {
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1}
+    };
+
+    // Perform Gauss-Jordan elimination
+    for (i = 0; i < 3; i++) {
+    \end{lstlisting}
+    \end{frame}
+\begin{frame}[fragile]
+    \frametitle{C Code}
+    \begin{lstlisting}
+        // Make the diagonal element 1
+        double diag = A[i][i];
+        for (j = 0; j < 3; j++) {
+            A[i][j] /= diag;
+            I[i][j] /= diag;
+        }
+
+        // Make other elements in the column 0
+        for (k = 0; k < 3; k++) {
+            if (k != i) {
+                double factor = A[k][i];
+                for (j = 0; j < 3; j++) {
+                    A[k][j] -= factor * A[i][j];
+                    I[k][j] -= factor * I[i][j];
+                }
+            }
+        }
+    }
+    \end{lstlisting}
+    \end{frame}
+\begin{frame}[fragile]
+    \frametitle{C Code}
+    \begin{lstlisting}
+
+    // Print the inverse
+    printf("Inverse matrix is:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("%8.3f ", I[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{Python Direct}
+    \begin{lstlisting}
+    import numpy as np
+import libs.line.funcs as line
+import libs.triangle.funcs as triangle
+
+# Given matrix
+A = np.array([[2, 1, 3],
+              [4, -1, 0],
+              [-7, 2, 1]], dtype=float)
+
+# Compute inverse using numpy
+A_inv = np.linalg.inv(A)
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{Python Direct}
+    \begin{lstlisting}
+# Display results
+print("Matrix A:")
+print(A)
+print("\nInverse of A:")
+print(A_inv)
+
+# Verification
+I_check = A @ A_inv
+print("\nVerification A * A_inv = ")
+print(I_check)
+
+    \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{Python Shared}
+    \begin{lstlisting}
+    import ctypes
+import numpy as np
+import libs.line.funcs as line
+import libs.triangle.funcs as triangle
+
+# Load shared library
+lib = ctypes.CDLL("./libinverse.so")
+
+# Define function signature
+lib.inverse.argtypes = [ctypes.POINTER(ctypes.c_double),
+                        ctypes.POINTER(ctypes.c_double)]
+lib.inverse.restype = None
+
+# Input matrix
+A = np.array([[2, 1, 3],
+              [4, -1, 0],
+              [-7, 2, 1]], dtype=np.double)
+  \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{Python Shared}
+    \begin{lstlisting}
+A_inv = np.zeros((3,3), dtype=np.double)
+
+# Call C function
+lib.inverse(A.ctypes.data_as(ctypes.POINTER(ctypes.c_double)),
+            A_inv.ctypes.data_as(ctypes.POINTER(ctypes.c_double)))
+
+print("Matrix A:")
+print(A)
+
+print("\nInverse from C (via ctypes):")
+print(A_inv)
+
+# Verify
+print("\nVerification A * A_inv =")
+print(A @ A_inv)
+
+    \end{lstlisting}
+\end{frame}
+\end{document}

@@ -1,0 +1,19 @@
+\frametitle{Python Shared}
+    \begin{lstlisting}
+A_inv = np.zeros((3,3), dtype=np.double)
+
+# Call C function
+lib.inverse(A.ctypes.data_as(ctypes.POINTER(ctypes.c_double)),
+            A_inv.ctypes.data_as(ctypes.POINTER(ctypes.c_double)))
+
+print("Matrix A:")
+print(A)
+
+print("\nInverse from C (via ctypes):")
+print(A_inv)
+
+# Verify
+print("\nVerification A * A_inv =")
+print(A @ A_inv)
+
+    \end{lstlisting}
