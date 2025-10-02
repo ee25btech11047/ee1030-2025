@@ -1,0 +1,215 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+	breakable=true,
+	listing engine=minted,
+	listing only,
+	minted language=#2,
+	minted style=default,
+	minted options={%
+		linenos,
+		gobble=0,
+		breaklines=true,
+		breakafter=,,
+		fontsize=\small,
+		numbersep=8pt,
+		#1},
+	boxsep=0pt,
+	left skip=0pt,
+	right skip=0pt,
+	left=25pt,
+	right=0pt,
+	top=3pt,
+	bottom=3pt,
+	arc=5pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=2pt,
+	toprule=2pt,
+	colback=bg,
+	colframe=orange!70,
+	enhanced,
+	overlay={%
+		\begin{tcbclipinterior}
+			\fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+	\end{tcbclipinterior}},
+	#3,
+}
+\lstset{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	commentstyle=\color{green!60!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{5.9.1}
+%\subtitle{A short story}
+
+\author % (optional)
+{RAVULA SHASHANK REDDY - EE25BTECH11047}
+
+ \begin{document}
+	
+	
+	\frame{\titlepage}
+	\begin{frame}{Question}
+    A fraction becomes $\tfrac{1}{3}$ when $1$ is subtracted from its numerator and it becomes 
+$\tfrac{1}{4}$ when $8$ is added to its denominator. Find the fraction.
+
+\end{frame}
+\begin{frame}{Solution}
+    Let fraction be  $\tfrac{x}{y}$  
+\begin{align}
+\vec{x}&=\myvec{x \\ y}\\
+\frac{x-1}{y}&=\frac{1}{3}\\
+\myvec{3 \\ -1}^T\vec{x}&=3\\
+\frac{x}{y+8}&=\frac{1}{4}\\
+\myvec{4 \\ -1}^T\vec{x}&=8\\
+\myvec{3 & -1 \\ 4 & -1}\,\vec{x} &= \myvec{3 \\ 8}
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+\begin{align}
+\myvec{3 & -1 & 3 \\ 4 & -1 & 8}
+\xrightarrow{R_2 \rightarrow{R_2-R_1}}
+\myvec{3 & -1 & 3 \\ 1 & 0 & 5}
+\xrightarrow{R_1\rightarrow{R_1-3R_2}}
+\myvec{0 & -1 & -12 \\ 1 & 0 & 5}
+\end{align}
+
+\begin{align}
+\vec{x}=\myvec{5 \\ 12}
+\end{align}
+\begin{center}
+
+$\boxed{Required\quad Fraction = \frac{5}{12}}$
+\end{center}
+
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    #include <stdio.h>
+
+int main() {
+    // Augmented matrix [A|b]
+    double mat[2][3] = {
+        {3, -1, 3},   // 3x - y = 3
+        {4, -1, 8}    // 4x - y = 8
+    };
+
+    // Row operation: R2 -> R2 - (4/3)R1
+    double factor = mat[1][0] / mat[0][0];
+    for (int j = 0; j < 3; j++) {
+        mat[1][j] = mat[1][j] - factor * mat[0][j];
+    }
+\end{lstlisting}  
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    // Scale R2 to make pivot = 1
+    double scale = mat[1][1];
+    for (int j = 0; j < 3; j++) {
+        mat[1][j] /= scale;
+    }
+
+    // Back substitution
+    double y = mat[1][2];
+    double x = (mat[0][2] - mat[0][1] * y) / mat[0][0];
+
+    printf("x = %.2f\n", x);
+    printf("y = %.2f\n", y);
+    printf("Fraction = %.2f/%.2f\n", x, y);
+
+    return 0;
+}
+
+\end{lstlisting}  
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+    import numpy as np
+import libs.line.funcs as line
+import libs.triangle.funcs as tri
+
+# Coefficient matrix A and RHS vector b
+A = np.array([[3, -1],
+              [4, -1]], dtype=float)
+b = np.array([3, 8], dtype=float)
+
+# Solve system A x = b
+x = np.linalg.solve(A, b)
+
+num, den = x[0], x[1]
+
+print("x =", num)
+print("y =", den)
+print("Fraction = {}/{}".format(int(num), int(den)))
+
+\end{lstlisting}  
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+    import numpy as np
+import ctypes
+
+# Load shared object
+solver = ctypes.CDLL("./solver.so")
+
+# Define return types and arguments
+solver.solve.argtypes = [np.ctypeslib.ndpointer(dtype=np.float64, ndim=1, flags="C")]
+
+# Prepare output array
+out = np.zeros(2, dtype=np.float64)
+\end{lstlisting}  
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+# Call C function
+solver.solve(out)
+
+x, y = out[0], out[1]
+
+print("x =", x)
+print("y =", y)
+print("Fraction = {}/{}".format(int(x), int(y)))
+
+\end{lstlisting}  
+\end{frame}
+\end{document}

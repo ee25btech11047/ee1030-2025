@@ -98,66 +98,76 @@ If \(\vec{A}=(-3,4)\) and \(\vec{B}=(5,4)\), find the area of the rectangle.
 \vec{A}=\myvec{-3\\4},\quad \vec{B}=\myvec{5\\4}
 \end{align}
 
-Centre \(\vec{O}\) lies on the diameter and also on the perpendicular bisector of chord passing  
-through \(\vec{A}\) and \(\vec{B}\).\\
-
-Perpendicular Bisector equation:
+Circle equation : \quad Centre $\vec{O}=-\vec{u}=-\myvec{u_1\\u_2}$
 \begin{align}
-\myvec{1 \\ 0}^T\vec{x}&=1
+\|\vec{x}\|^2 + 2 \vec{u}^\top \vec{x} + f = 0\\
+\|\vec{A}\|^2 + 2 \vec{u}^\top \vec{A} + f = 0\\
+\|\vec{B}\|^2 + 2 \vec{u}^\top \vec{B} + f = 0
 \end{align}
 
-Diameter equation:
+Diameter equation:(Centre lies on diameter)
 \begin{align}
-\myvec{1 \\ -4}^T\vec{x}&=-7
+\myvec{1 \\ -4}^T\vec{x}&=-7\\
+\vec{n}^T\vec{u}&=c
 \end{align}
 \end{frame}
 \begin{frame}{Solution}
 \begin{align}
-\therefore
-\myvec{1 & 0\\ 1 & -4}\vec{O} &= \myvec{1\\-7}
+\myvec{2\vec{A} & 2\vec{B} & n \\ 1 & 1 & 0}^T\myvec{\vec{u}\\f}&=-\myvec{||\vec{A}||^2\\||\vec{B}||^2\\c}\\
+\myvec{-6 & 10 & 1  \\
+8 & 8 & -4 \\
+1 & 1 & 0 }^T\myvec{\vec{u}\\f} &= -\myvec{25 \\ 41 \\ -7}\\
+\myvec{
+-6 & 8 & 1 & -25 \\
+10 & 8 & 1 & -41 \\
+1 & -4 & 0 & 7
+}
+\xrightarrow{ R_1 \leftrightarrow R_3} & \quad
+\myvec{
+1 & -4 & 0 & 7 \\
+10 & 8 & 1 & -41 \\
+-6 & 8 & 1 & -25
+} 
 \end{align}
 \begin{align}
-\myvec{1 & 0 & 1\\[4pt] 1 & -4 & -7}
-\xrightarrow{R_2\rightarrow R_2-R_1}
-\myvec{1 & 0 & 1\\[4pt] 0 & -4 & -8}
-\xrightarrow{R_2\rightarrow (-\tfrac{1}{4})R_2}
-\myvec{1 & 0 & 1\\[4pt] 0 & 1 & 2}
-\end{align}
-\begin{align}
-    \vec{O}=\myvec{1\\2}
-\end{align}
-
-Radius of circumcircle
-\begin{align}
-r&=||\vec{O}-\vec{A}||=2\sqrt{5}
-\end{align}
-
-Hence the Circumcircle equation is:
-\begin{align}
-||\vec{x}||^2+2\vec{c}^T\vec{x}+f=0\\
-\vec{c}=-\vec{O},
-f=||\vec{c}||^2-r^2=-15
+R_2 \to R_2 - 10R_1, \; R_3 \to R_3 + 6 R_1 :
+ \myvec{
+1 & -4 & 0 & 7 \\
+0 & 48 & 1 & -111 \\
+0 & -16 & 1 & 17
+} 
 \end{align}
 \end{frame}
 \begin{frame}{Solution}
-\begin{center}
+\begin{align}
+R_3 \to R_3 + \frac{1}{3} R_2 :
+ \myvec{
+1 & -4 & 0 & 7 \\
+0 & 48 & 1 & -111 \\
+0 & 0 & 4/3 & -20
+}
+\end{align}
+
+\begin{align}
+\frac{4}{3} f &= -20 \implies f = -15 \\
+48 u_2 + f &= -111 \implies 48 u_2 - 15 = -111 \implies u_2 = -2 \\
+u_1 - 4 u_2 &= 7 \implies  u_1 = -1\\
+\vec{u} &= \myvec{-1 \\ -2}, \quad f = -15\\
+\vec{O} &= -\vec{u} = \myvec{1 \\ 2}
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+Equation of the Circumcircle:
 \begin{align}
 \boxed{||\vec{x}||^2+2\myvec{-1 & -2}\vec{x}-15=0}
 \end{align}
-\end{center}
 \begin{align}
-\vec{C}&=2\vec{O}-\vec{A}=\myvec{2\\4}-\myvec{-3\\4}=\myvec{5\\0},\\
-\vec{D}&=2\vec{O}-\vec{B}=\myvec{2\\4}-\myvec{5\\4}=\myvec{-3\\0}.
+\vec{C} &= 2\vec{O} - \vec{A} = 2\myvec{1 \\ 2} - \myvec{-3 \\ 4} = \myvec{5 \\ 0} \\
+\vec{D} &= 2\vec{O} - \vec{B} = 2\myvec{1 \\ 2} - \myvec{5 \\ 4} = \myvec{-3 \\ 0}
 \end{align}
 \begin{align}
-\vec{B}-\vec{A}=\myvec{8\\0},\qquad
-\vec{D}-\vec{A}=\myvec{0\\-4}.
-\end{align}
-
-\begin{align}
-\text{Area} &= \big|\vec{B}-\vec{A}\times\vec{D}-\vec{A}\big|
-= \left|\det\myvec{8 & 0\\[4pt]0 & -4}\right|
-= |8(-4)-0| = 32.
+\text{Area}=|(\vec{B} - \vec{A}) \times (\vec{D} -\vec{A})| =
+\begin{vmatrix} 8 & 0 \\ 0 & -4 \end{vmatrix} = 32
 \end{align}
 
 \end{frame}

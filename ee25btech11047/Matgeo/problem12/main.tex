@@ -1,0 +1,99 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{article}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\graphicspath{{./figs/}}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}
+\usepackage{gvv}                                        
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{circuitikz}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+text width=4em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{sum} = [draw, fill=blue!10, circle, minimum size=1cm, node distance=1.5cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+
+
+\begin{document}
+	
+	\bibliographystyle{IEEEtran}
+	\vspace{3cm}
+	
+\title{5.9.1}
+\author{EE25BTECH11047 - RAVULA SHASHANK REDDY}
+\maketitle
+\hrulefill
+\bigskip 
+
+\renewcommand{\thetable}{\theenumi}
+\setlength{\intextsep}{10pt}
+
+\textbf{Question:} \\
+
+A fraction becomes $\tfrac{1}{3}$ when $1$ is subtracted from its numerator and it becomes 
+
+$\tfrac{1}{4}$ when $8$ is added to its denominator. Find the fraction.\\
+
+ \textbf{Solution:}\\
+ 
+Let fraction be  $\tfrac{x}{y}$  
+\begin{align}
+\vec{x}&=\myvec{x \\ y}\\
+\frac{x-1}{y}&=\frac{1}{3}\\
+\myvec{3 \\ -1}^T\vec{x}&=3\\
+\frac{x}{y+8}&=\frac{1}{4}\\
+\myvec{4 \\ -1}^T\vec{x}&=8\\
+\myvec{3 & -1 \\ 4 & -1}\,\vec{x} &= \myvec{3 \\ 8}
+\end{align}
+\begin{align}
+\myvec{3 & -1 & 3 \\ 4 & -1 & 8}
+\xrightarrow{R_2 \rightarrow{R_2-R_1}}
+\myvec{3 & -1 & 3 \\ 1 & 0 & 5}
+\xrightarrow{R_1\rightarrow{R_1-3R_2}}
+\myvec{0 & -1 & -12 \\ 1 & 0 & 5}
+\end{align}
+
+\begin{align}
+\vec{x}=\myvec{5 \\ 12}
+\end{align}
+\begin{center}
+
+$\boxed{Required\quad Fraction = \frac{5}{12}}$
+\end{center}
+
+\end{document}
+
+
+
+

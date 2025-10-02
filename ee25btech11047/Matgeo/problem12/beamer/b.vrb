@@ -1,0 +1,12 @@
+\frametitle{Python Shared}
+\begin{lstlisting}
+# Call C function
+solver.solve(out)
+
+x, y = out[0], out[1]
+
+print("x =", x)
+print("y =", y)
+print("Fraction = {}/{}".format(int(x), int(y)))
+
+\end{lstlisting}
