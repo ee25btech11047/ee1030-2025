@@ -1,21 +1,24 @@
-import numpy as np
 import ctypes
 
-# Load shared object
-solver = ctypes.CDLL("./solver.so")
+# Load shared library
+lib = ctypes.CDLL("./libmatrix.so")
 
-# Define return types and arguments
-solver.solve.argtypes = [np.ctypeslib.ndpointer(dtype=np.float64, ndim=1, flags="C")]
+# Define argument and return types
+lib.find_k.argtypes = [ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double)]
+lib.find_k.restype = ctypes.c_int
 
-# Prepare output array
-out = np.zeros(2, dtype=np.float64)
+# Prepare variables
+k1 = ctypes.c_double()
+k2 = ctypes.c_double()
 
-# Call C function
-solver.solve(out)
+# Call function
+n = lib.find_k(ctypes.byref(k1), ctypes.byref(k2))
 
-x, y = out[0], out[1]
-
-print("x =", x)
-print("y =", y)
-print("Fraction = {}/{}".format(int(x), int(y)))
+# Print results
+if n == 0:
+    print("No real values of k")
+elif n == 2:
+    print("Values of k for which matrix is singular:")
+    print("k =", k1.value)
+    print("k =", k2.value)
 

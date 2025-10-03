@@ -1,0 +1,17 @@
+\frametitle{Python Shared}
+    \begin{lstlisting}
+
+# Set return type of the function
+lib.compute_ellipse.restype = EllipseResult
+
+# Call the function
+res = lib.compute_ellipse()
+
+print(f"f0 = {res.f0}")
+print(f"Eccentricity = {res.eccentricity}")
+print(f"Semi-major a = {res.a}, Semi-minor b = {res.b}")
+print(f"Directrix constant c = {res.c_directrix}")
+print(f"Foci y = {res.Fy}")
+print(f"Latus rectum = {res.latus_rectum}")
+
+    \end{lstlisting}

@@ -74,7 +74,7 @@
 %This block of code defines the information to appear in the
 %Title page
 \title %optional
-{5.9.1}
+{5.5.4}
 %\subtitle{A short story}
 
 \author % (optional)
@@ -85,131 +85,137 @@
 	
 	\frame{\titlepage}
 	\begin{frame}{Question}
-    A fraction becomes $\tfrac{1}{3}$ when $1$ is subtracted from its numerator and it becomes 
-$\tfrac{1}{4}$ when $8$ is added to its denominator. Find the fraction.
+    Find the value of $k$ for which the matrix is singular.
+\begin{align*}
+\myvec{k & 8 \\ 1 & 2k}
+\end{align*}
 
 \end{frame}
 \begin{frame}{Solution}
-    Let fraction be  $\tfrac{x}{y}$  
+    Singular matrix:
 \begin{align}
-\vec{x}&=\myvec{x \\ y}\\
-\frac{x-1}{y}&=\frac{1}{3}\\
-\myvec{3 \\ -1}^T\vec{x}&=3\\
-\frac{x}{y+8}&=\frac{1}{4}\\
-\myvec{4 \\ -1}^T\vec{x}&=8\\
-\myvec{3 & -1 \\ 4 & -1}\,\vec{x} &= \myvec{3 \\ 8}
+\det\myvec{k & 8 \\ 1 & 2k} &= 0 \\
+k \cdot 2k - 1 \cdot 8 &= 0\\
+2k^2 - 8 &= 0 \\
+2k^2 &= 8 \\
+k^2 &= 4 
 \end{align}
-\end{frame}
-\begin{frame}{Solution}
 \begin{align}
-\myvec{3 & -1 & 3 \\ 4 & -1 & 8}
-\xrightarrow{R_2 \rightarrow{R_2-R_1}}
-\myvec{3 & -1 & 3 \\ 1 & 0 & 5}
-\xrightarrow{R_1\rightarrow{R_1-3R_2}}
-\myvec{0 & -1 & -12 \\ 1 & 0 & 5}
+\boxed{
+k = \pm 2}
 \end{align}
-
-\begin{align}
-\vec{x}=\myvec{5 \\ 12}
-\end{align}
-\begin{center}
-
-$\boxed{Required\quad Fraction = \frac{5}{12}}$
-\end{center}
 
 \end{frame}
 \begin{frame}[fragile]
-\frametitle{C Code}
-\begin{lstlisting}
-    #include <stdio.h>
+    \frametitle{C Code}
+    \begin{lstlisting}
+        #include <stdio.h>
+#include <math.h>
 
 int main() {
-    // Augmented matrix [A|b]
-    double mat[2][3] = {
-        {3, -1, 3},   // 3x - y = 3
-        {4, -1, 8}    // 4x - y = 8
-    };
+    double A[2][2];
+    double a, b, c; // coefficients for quadratic
+    double D, k1, k2;
 
-    // Row operation: R2 -> R2 - (4/3)R1
-    double factor = mat[1][0] / mat[0][0];
-    for (int j = 0; j < 3; j++) {
-        mat[1][j] = mat[1][j] - factor * mat[0][j];
+    // Input matrix
+    printf("Enter the 2x2 matrix elements:\n");
+    for(int i=0; i<2; i++) {
+        for(int j=0; j<2; j++) {
+            scanf("%lf", &A[i][j]);
+        }
     }
-\end{lstlisting}  
-\end{frame}
+
+    // Expecting matrix of form [[k, 8], [1, 2k]]
+    // General quadratic from determinant:
+    \end{lstlisting}
+    \end{frame}
 \begin{frame}[fragile]
-\frametitle{C Code}
-\begin{lstlisting}
-    // Scale R2 to make pivot = 1
-    double scale = mat[1][1];
-    for (int j = 0; j < 3; j++) {
-        mat[1][j] /= scale;
+    \frametitle{C Code}
+    \begin{lstlisting}
+    // det = A[0][0]*A[1][1] - A[0][1]*A[1][0]
+    // => k*(2k) - 8*1 = 2k^2 - 8 = 0
+
+    a = 2;
+    b = 0;
+    c = -8;
+
+    // Discriminant
+    D = b*b - 4*a*c;
+
+    if (D < 0) {
+        printf("No real values of k\n");
     }
+     \end{lstlisting}
+    \end{frame}
+\begin{frame}[fragile]
+    \frametitle{C Code}
+    \begin{lstlisting}else {
+        k1 = (-b + sqrt(D)) / (2*a);
+        k2 = (-b - sqrt(D)) / (2*a);
 
-    // Back substitution
-    double y = mat[1][2];
-    double x = (mat[0][2] - mat[0][1] * y) / mat[0][0];
-
-    printf("x = %.2f\n", x);
-    printf("y = %.2f\n", y);
-    printf("Fraction = %.2f/%.2f\n", x, y);
+        printf("Equation: 2k^2 - 8 = 0\n");
+        printf("Values of k for which matrix is singular:\n");
+        printf("k = %.2f\n", k1);
+        printf("k = %.2f\n", k2);
+    }
 
     return 0;
 }
 
-\end{lstlisting}  
+    \end{lstlisting}
 \end{frame}
 \begin{frame}[fragile]
-\frametitle{Python Direct}
-\begin{lstlisting}
-    import numpy as np
-import libs.line.funcs as line
-import libs.triangle.funcs as tri
+    \frametitle{Python Direct}
+    \begin{lstlisting}
+        import numpy as np
+from libs.matrix.funcs import det   # your custom determinant function
 
-# Coefficient matrix A and RHS vector b
-A = np.array([[3, -1],
-              [4, -1]], dtype=float)
-b = np.array([3, 8], dtype=float)
+# Define matrix with k
+def det_val(k):
+    A = np.array([[k, 8],
+                  [1, 2*k]], dtype=float)
+    return det(A)
 
-# Solve system A x = b
-x = np.linalg.solve(A, b)
+solutions = []
+for k in range(-10, 11):  # checking a range
+    if abs(det_val(k)) < 1e-9:
+        solutions.append(k)
 
-num, den = x[0], x[1]
+print("Values of k for which matrix is singular:", solutions)
 
-print("x =", num)
-print("y =", den)
-print("Fraction = {}/{}".format(int(num), int(den)))
-
-\end{lstlisting}  
+    \end{lstlisting}
 \end{frame}
 \begin{frame}[fragile]
-\frametitle{Python Shared}
-\begin{lstlisting}
-    import numpy as np
-import ctypes
+    \frametitle{Python Shared}
+    \begin{lstlisting}
+        import ctypes
 
-# Load shared object
-solver = ctypes.CDLL("./solver.so")
+# Load shared library
+lib = ctypes.CDLL("./libmatrix.so")
 
-# Define return types and arguments
-solver.solve.argtypes = [np.ctypeslib.ndpointer(dtype=np.float64, ndim=1, flags="C")]
+# Define argument and return types
+lib.find_k.argtypes = [ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double)]
+lib.find_k.restype = ctypes.c_int
 
-# Prepare output array
-out = np.zeros(2, dtype=np.float64)
-\end{lstlisting}  
+# Prepare variables
+k1 = ctypes.c_double()
+k2 = ctypes.c_double()
+  \end{lstlisting}
 \end{frame}
 \begin{frame}[fragile]
-\frametitle{Python Shared}
-\begin{lstlisting}
-# Call C function
-solver.solve(out)
+    \frametitle{Python Shared}
+    \begin{lstlisting}
+# Call function
+n = lib.find_k(ctypes.byref(k1), ctypes.byref(k2))
 
-x, y = out[0], out[1]
+# Print results
+if n == 0:
+    print("No real values of k")
+elif n == 2:
+    print("Values of k for which matrix is singular:")
+    print("k =", k1.value)
+    print("k =", k2.value)
 
-print("x =", x)
-print("y =", y)
-print("Fraction = {}/{}".format(int(x), int(y)))
-
-\end{lstlisting}  
+    \end{lstlisting}
 \end{frame}
 \end{document}

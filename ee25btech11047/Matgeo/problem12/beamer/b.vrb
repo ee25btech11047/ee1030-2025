@@ -1,12 +1,14 @@
 \frametitle{Python Shared}
-\begin{lstlisting}
-# Call C function
-solver.solve(out)
+    \begin{lstlisting}
+# Call function
+n = lib.find_k(ctypes.byref(k1), ctypes.byref(k2))
 
-x, y = out[0], out[1]
+# Print results
+if n == 0:
+    print("No real values of k")
+elif n == 2:
+    print("Values of k for which matrix is singular:")
+    print("k =", k1.value)
+    print("k =", k2.value)
 
-print("x =", x)
-print("y =", y)
-print("Fraction = {}/{}".format(int(x), int(y)))
-
-\end{lstlisting}
+    \end{lstlisting}
