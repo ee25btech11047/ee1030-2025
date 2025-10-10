@@ -1,0 +1,353 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+	breakable=true,
+	listing engine=minted,
+	listing only,
+	minted language=#2,
+	minted style=default,
+	minted options={%
+		linenos,
+		gobble=0,
+		breaklines=true,
+		breakafter=,,
+		fontsize=\small,
+		numbersep=8pt,
+		#1},
+	boxsep=0pt,
+	left skip=0pt,
+	right skip=0pt,
+	left=25pt,
+	right=0pt,
+	top=3pt,
+	bottom=3pt,
+	arc=5pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=2pt,
+	toprule=2pt,
+	colback=bg,
+	colframe=orange!70,
+	enhanced,
+	overlay={%
+		\begin{tcbclipinterior}
+			\fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+	\end{tcbclipinterior}},
+	#3,
+}
+\lstset{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	commentstyle=\color{green!60!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{9.2.7}
+%\subtitle{A short story}
+
+\author % (optional)
+{RAVULA SHASHANK REDDY - EE25BTECH11047}
+
+ \begin{document}
+	
+	
+	\frame{\titlepage}
+	\begin{frame}{Question}
+    Find the area of the region bounded by the parabola $y^2 = x$ and the line $2y = x$.
+\end{frame}
+\begin{frame}{Solution}
+    \begin{align}
+\vec{x}^T \vec{V} \vec{x} + 2\vec{u}^T\vec{x} + f = 0 \\
+\vec{V} = \myvec{0 & 0 \\ 0 & 1},\quad 
+\vec{u} = \myvec{-\tfrac{1}{2} \\ 0},\quad f=0 \\
+\end{align}
+\begin{align}
+\vec{x} &= \vec{h} + \kappa \vec{m}, \quad \kappa \in \mathbb{R} \\
+\vec{h} &= \myvec{0 \\ 0}, \quad 
+\vec{m} = \myvec{2 \\ 1} \\
+\vec{x}_i &= \vec{h} + \kappa_i \vec{m} 
+\end{align}
+
+Substituting eq-(6) in eq-(1) and Solving the Quadratic 
+\begin{align}
+\kappa_i = \frac{1}{\vec{m}^T \vec{V} \vec{m}}
+\brak{-\vec{m}^T(\vec{V}\vec{h}+\vec{u})
+\pm \sqrt{(\vec{m}^T(\vec{V}\vec{h}+\vec{u}))^2 - g(\vec{h})(\vec{m}^T \vec{V} \vec{m})}} 
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+\begin{align}
+g(\vec{h}) &= \vec{h}^T \vec{V} \vec{h} + 2\vec{u}^T \vec{h} + f\\
+\vec{V}\vec{m} &= \myvec{0 \\ 1},\quad 
+\vec{m}^T \vec{V} \vec{m} = 1 \\
+\vec{V}\vec{h}+\vec{u} &= \myvec{-\tfrac{1}{2} \\ 0},\quad
+\vec{m}^T(\vec{V}\vec{h}+\vec{u}) = -1 \\
+g(\vec{h}) &= 0\\
+\kappa_i &= -(-1) \pm \sqrt{(-1)^2 - 0} 
+= 1 \pm 1 \\
+\implies \kappa_1 &= 0,\;\; \kappa_2 = 2\\
+\vec{x}_1 &= \vec{h} + 0\vec{m} = \myvec{0 \\ 0},\quad
+\vec{x}_2 = \vec{h} + 2\vec{m} = \myvec{4 \\ 2} \\
+\text{Area} &= \int_{0}^{2} \Big(2y - y^2\Big)\,dy 
+= \brak{y^2 - \tfrac{y^3}{3}}_0^2 
+= 4 - \tfrac{8}{3} 
+= \tfrac{4}{3}
+\end{align}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+    \begin{lstlisting}
+        #include <stdio.h>
+#include <math.h>
+
+// Function g(h)
+double g(double h[2], double V[2][2], double u[2], double f) {
+    double temp1 = h[0]*(V[0][0]*h[0] + V[0][1]*h[1]) + 
+                   h[1]*(V[1][0]*h[0] + V[1][1]*h[1]);
+    double temp2 = 2*(u[0]*h[0] + u[1]*h[1]);
+    return temp1 + temp2 + f;
+}
+
+int main() {
+    // Conic parameters for y^2 = x
+    double V[2][2] = {{0,0},{0,1}};
+    double u[2] = {-0.5,0};
+    double f = 0;
+   \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+    \begin{lstlisting}
+ 
+    // Line parameters x = h + k*m  (x = 2y)
+    double h[2] = {0,0};
+    double m[2] = {2,1};
+
+    // Compute intersections using formula
+    double mtVm = m[0]*(V[0][0]*m[0] + V[0][1]*m[1]) +
+                  m[1]*(V[1][0]*m[0] + V[1][1]*m[1]);
+
+    double Vh_u[2] = {V[0][0]*h[0] + V[0][1]*h[1] + u[0],
+                      V[1][0]*h[0] + V[1][1]*h[1] + u[1]};
+    double mVu = m[0]*Vh_u[0] + m[1]*Vh_u[1];
+    double disc = mVu*mVu - g(h,V,u,f)*mtVm;
+
+    double kappa1 = (-mVu + sqrt(disc))/mtVm;
+    double kappa2 = (-mVu - sqrt(disc))/mtVm;
+
+    double x1[2] = {h[0] + kappa1*m[0], h[1] + kappa1*m[1]};
+     \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+    \begin{lstlisting}
+    double x2[2] = {h[0] + kappa2*m[0], h[1] + kappa2*m[1]};
+
+    printf("Intersection points:\n");
+    printf("x1 = (%.2f, %.2f)\n", x1[0], x1[1]);
+    printf("x2 = (%.2f, %.2f)\n", x2[0], x2[1]);
+
+    // Area bounded (integral from y=0 to y=2 of (2y - y^2) dy)
+    double area = (pow(2,2) - pow(2,3)/3.0) - (0 - 0);
+    printf("Bounded Area = %.4f\n", area);
+
+    // Generate data for plotting
+    FILE *fp = fopen("parabola_line.dat","w");
+    if(fp == NULL) {
+        printf("Error opening file.\n");
+        return 1;
+    }
+ \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+    \begin{lstlisting}
+    // Parabola points
+    for(double y=-3; y<=3; y+=0.05) {
+        double x = y*y;
+        fprintf(fp,"%lf %lf P\n",x,y);  // P for parabola
+    }
+    // Line points
+    for(double y=-3; y<=3; y+=0.05) {
+        double x = 2*y;
+        fprintf(fp,"%lf %lf L\n",x,y);  // L for line
+    }
+    fclose(fp);
+    printf("Data written to parabola_line.dat (columns: x y label).\n");
+    printf("Use gnuplot to plot:\n");
+    printf("  plot 'parabola_line.dat' using 1:2:(stringcolumn(3)) with labels\n");
+    return 0;
+}
+
+    \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+    \begin{lstlisting}
+        
+import numpy as np
+import matplotlib.pyplot as plt
+from numpy import linalg as LA
+
+# Local imports
+from libs.line.funcs import *
+from libs.triangle.funcs import *
+from libs.conics.funcs import *
+
+# Setting up plot
+fig, ax = plt.subplots()
+ax.set_aspect('equal')
+ax.grid()
+
+# Conic parameters for y^2 = x
+V = np.array(([0,0],[0,1]))
+u = np.array(([-0.5,0]))
+f = 0
+ \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+    \begin{lstlisting}
+# Line parameters x = h + k*m  (x = 2y)
+h = np.array(([0,0]))
+m = np.array(([2,1]))
+
+# Function g(h)
+def g(h,V,u,f):
+    return h@V@h + 2*u@h + f
+
+# Compute intersections using formula
+mtVm = m@V@m
+mVu = m@(V@h + u)
+disc = mVu**2 - g(h,V,u,f)*mtVm
+kappa1 = (-mVu + np.sqrt(disc))/mtVm
+kappa2 = (-mVu - np.sqrt(disc))/mtVm
+
+x1 = h + kappa1*m
+x2 = h + kappa2*m
+ \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+    \begin{lstlisting}
+# Generate full parabola
+y_parab = np.linspace(-3,3,400)
+x_parab = y_parab**2
+plt.plot(x_parab,y_parab,label='$y^2=x$',color='r')
+
+# Generate full line
+y_line = np.linspace(-3,3,400)
+x_line = 2*y_line
+plt.plot(x_line,y_line,label='$x=2y$',color='b')
+
+# Shade the bounded area between y=0 and y=2
+y_fill = np.linspace(0,2,200)
+x_left = y_fill**2
+x_right = 2*y_fill
+plt.fill_betweenx(y_fill, x_left, x_right, color='blue', alpha=0.3)
+
+# Intersection points
+ \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+    \begin{lstlisting}
+points = np.vstack((x1,x2)).T
+plt.scatter(points[0,:],points[1,:],color='k')
+
+# Labels with rounding
+labels = [f"$({round(points[0,i],1)},{round(points[1,i],1)})$" for i in range(2)]
+for i, txt in enumerate(labels):
+    plt.annotate(txt,
+                 (points[0,i], points[1,i]),
+                 textcoords="offset points",
+                 xytext=(0,5),
+                 ha='center')
+
+plt.xlabel('$x$')
+plt.ylabel('$y$')
+plt.legend(loc='best')
+plt.title("Parabola $y^2=x$ and Line $x=2y$ with Bounded Area")
+plt.show()
+
+    \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+    \begin{lstlisting}
+        import ctypes
+
+# Load shared library
+lib = ctypes.CDLL('./libparab_area.so')
+
+# Define function signature
+lib.parab_area.argtypes = [ctypes.POINTER(ctypes.c_double), 
+                           ctypes.POINTER(ctypes.c_double),
+                           ctypes.POINTER(ctypes.c_double),
+                           ctypes.POINTER(ctypes.c_double),
+                           ctypes.POINTER(ctypes.c_double)]
+
+# Prepare variables
+x1 = ctypes.c_double()
+y1 = ctypes.c_double()
+x2 = ctypes.c_double()
+y2 = ctypes.c_double()
+area = ctypes.c_double()
+ \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+    \begin{lstlisting}
+        import ctypes
+# Call function
+lib.parab_area(ctypes.byref(x1), ctypes.byref(y1), 
+               ctypes.byref(x2), ctypes.byref(y2), ctypes.byref(area))
+
+# Print results
+print(f"Intersection 1: ({round(x1.value,2)}, {round(y1.value,2)})")
+print(f"Intersection 2: ({round(x2.value,2)}, {round(y2.value,2)})")
+print(f"Area = {round(area.value,4)}")
+
+    \end{lstlisting}
+\end{frame}
+\begin{frame}{Plot}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\linewidth]{figs/Fig_1.png}
+        \caption{}
+        \label{fig:placeholder}
+    \end{figure}
+\end{frame}
+\end{document}

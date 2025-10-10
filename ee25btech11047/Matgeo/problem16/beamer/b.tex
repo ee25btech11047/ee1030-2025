@@ -1,0 +1,385 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+	breakable=true,
+	listing engine=minted,
+	listing only,
+	minted language=#2,
+	minted style=default,
+	minted options={%
+		linenos,
+		gobble=0,
+		breaklines=true,
+		breakafter=,,
+		fontsize=\small,
+		numbersep=8pt,
+		#1},
+	boxsep=0pt,
+	left skip=0pt,
+	right skip=0pt,
+	left=25pt,
+	right=0pt,
+	top=3pt,
+	bottom=3pt,
+	arc=5pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=2pt,
+	toprule=2pt,
+	colback=bg,
+	colframe=orange!70,
+	enhanced,
+	overlay={%
+		\begin{tcbclipinterior}
+			\fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+	\end{tcbclipinterior}},
+	#3,
+}
+\lstset{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	commentstyle=\color{green!60!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{9.5.10}
+%\subtitle{A short story}
+
+\author % (optional)
+{RAVULA SHASHANK REDDY - EE25BTECH11047}
+
+ \begin{document}
+	
+	
+	\frame{\titlepage}
+	\begin{frame}{Question}
+    If the sum of zeroes of the polynomial is $\sqrt{2}$, then find the value of $k$ .
+\begin{align*}
+    p(x)=2x^2-k\sqrt{2}x+1
+\end{align*}
+
+\end{frame}
+\begin{frame}{Solution}
+    \begin{align}
+\vec{x}^\top \vec{V} \vec{x} + 2\vec{u}^\top \vec{x} + f = 0\\
+\vec{x} = \vec{h} + \kappa \vec{m}.
+\end{align}
+
+Substituting the line into the conic gives
+\begin{align}
+(\vec{h} + \kappa \vec{m})^\top \vec{V} (\vec{h} + \kappa \vec{m}) + 2\vec{u}^\top (\vec{h} + \kappa \vec{m}) + f &= 0 \\
+\Rightarrow\;
+\kappa^2(\vec{m}^\top \vec{V} \vec{m}) + 2\kappa\, \vec{m}^\top(\vec{V}\vec{h} + \vec{u}) + (\vec{h}^\top \vec{V} \vec{h} + 2\vec{u}^\top \vec{h} + f) &= 0\\
+\kappa_1 + \kappa_2 = -\frac{2\,\vec{m}^\top(\vec{V}\vec{h}+\vec{u})}{\vec{m}^\top \vec{V} \vec{m}}.
+\end{align}
+
+Given:(Roots are given by intersection of conic with x-axis)
+\begin{align}
+\vec{V} &=
+\myvec{
+2 & 0\\[4pt]
+0 & 0
+}, \quad
+\vec{u} =
+\myvec{
+-\dfrac{k\sqrt{2}}{2}\\[4pt]
+0
+}, \quad
+f = 1\\
+\vec{h}&=\myvec{0 \\ 0},\quad \vec{m}=\myvec{1\\0}\\
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+\begin{align}
+\vec{V}\vec{h} + \vec{u} &=
+\myvec{
+- \dfrac{k\sqrt{2}}{2}\\[4pt]
+0
+},\\[4pt]
+\vec{m}^\top \vec{V} \vec{m} &= 2.\\
+\vec{m}^\top (\vec{V}\vec{h} + \vec{u})&= - \dfrac{k\sqrt{2}}{2}
+\end{align}
+
+\begin{align}
+\kappa_1 + \kappa_2 
+&= -\frac{2(- \dfrac{k\sqrt{2}}{2})}{2}=\sqrt{2}.
+\end{align}
+\begin{align}
+\Rightarrow\;\boxed{k = 2}.
+\end{align}
+
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{C Code}
+    \begin{lstlisting}
+        #include <stdio.h>
+#include <math.h>
+
+int main() {
+    // Given conic: 2x^2 - k√2 x + 1 = 0
+    // Matrices and vectors as per conic representation:
+    // x^T V x + 2u^T x + f = 0
+
+    double V[2][2] = {{2, 0}, {0, 0}};
+    double h[2] = {0, 0};
+    double m[2] = {1, 0};
+    double f = 1;
+    double k;       // unknown to be determined
+
+    // Given condition: (sum of roots) = √2
+    double given_sum = sqrt(2);
+
+    // From formula:
+    \end{lstlisting}
+    \end{frame}
+\begin{frame}[fragile]
+    \frametitle{C Code}
+    \begin{lstlisting}
+    // κ₁ + κ₂ = -[2 * (mᵀ(Vh + u))] / (mᵀ V m)
+    // For given h = 0, m = [1 0]ᵀ :
+    // mᵀ V m = 2,  (Vh + u) = [-k√2/2, 0]ᵀ
+    // ⇒ κ₁ + κ₂ = -[2 * (-k√2/2)] / 2 = (k√2)/2
+
+    // Equating to given sum √2 ⇒ (k√2)/2 = √2 ⇒ k = 2
+
+    k = 2.0;
+
+    // Verification step:
+    double u[2] = { -k * sqrt(2) / 2.0, 0.0 };
+    double Vh_plus_u[2];
+    Vh_plus_u[0] = V[0][0]*h[0] + V[0][1]*h[1] + u[0];
+    Vh_plus_u[1] = V[1][0]*h[0] + V[1][1]*h[1] + u[1];
+
+    double mT_V_m = m[0]*(V[0][0]*m[0] + V[0][1]*m[1]) +
+                    m[1]*(V[1][0]*m[0] + V[1][1]*m[1]);
+ \end{lstlisting}
+    \end{frame}
+\begin{frame}[fragile]
+    \frametitle{C Code}
+    \begin{lstlisting}
+    double mT_Vh_u = m[0]*Vh_plus_u[0] + m[1]*Vh_plus_u[1];
+
+    double kappa_sum = -2 * mT_Vh_u / mT_V_m;
+
+    printf("Computed κ₁ + κ₂ = %.4f\n", kappa_sum);
+    printf("Given sum of roots = %.4f\n", given_sum);
+    printf("Value of k = %.2f\n", k);
+
+    return 0;
+}
+
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Python Direct}
+    \begin{lstlisting}
+        
+import numpy as np
+import matplotlib.pyplot as plt
+
+from libs.line.funcs import *
+from libs.triangle.funcs import *
+from libs.conics.funcs import *
+
+# Given polynomial: p(x) = 2x² - k√2 x + 1
+
+k = 2
+V = np.array([[2, 0],
+              [0, 0]])
+u = np.array([[-k*np.sqrt(2)/2],
+              [0]])
+f = 1
+
+
+ \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Python Direct}
+    \begin{lstlisting}
+# Intersection with x-axis: y = 0
+# Substitute in conic: 2x² - k√2 x + 1 = 0
+
+a = 2
+b = -k*np.sqrt(2)
+c = 1
+
+# Use function from funcs to compute roots
+x1, x2 = quad_roots(a, b, c)
+x_vals = np.array([x1, x2])
+y_vals = np.zeros(2)
+
+# Compute sum of roots (verification)
+
+sum_roots = x1 + x2
+print(f"Sum of zeroes = {np.round(sum_roots,3)} ≈ √2")
+
+# Plot the conic and x-axis intersection
+ \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Python Direct}
+    \begin{lstlisting}
+x_plot = np.linspace(min(x_vals) - 1, max(x_vals) + 1, 400)
+y_plot = 2*x_plot**2 - k*np.sqrt(2)*x_plot + 1
+
+plt.figure(figsize=(7, 5))
+plt.axhline(0, color='black', linewidth=1.2, label='x-axis')
+plt.plot(x_plot, y_plot, 'b', label=r'$2x^2 - 2\sqrt{2}x + 1$')
+plt.scatter(x_vals, y_vals, color='red', zorder=5)
+
+# Label intersection points inside the plot
+for i in range(2):
+    label_point(x_vals[i], y_vals[i],
+                f"({np.round(x_vals[i],2)}, {np.round(y_vals[i],2)})",
+                offset=(0,0.2), color='darkred')
+ \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Python Direct}
+    \begin{lstlisting}
+# Display sum of zeroes
+plt.text(np.mean(x_vals), max(y_plot)/2,
+         f"Sum of zeroes = {np.round(sum_roots, 3)} ≈ √2",
+         fontsize=10, color='purple', ha='center')
+
+plt.title("Intersection of Conic with x-axis")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend()
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.tight_layout()
+plt.show()
+
+    \end{lstlisting}
+    \end{frame}
+    \begin{frame}[fragile]
+    \frametitle{Python Shared}
+    \begin{lstlisting}
+        import numpy as np
+import matplotlib.pyplot as plt
+import ctypes
+
+# Load shared library
+lib = ctypes.CDLL("./conic_kappa.so")
+
+# Define argument/return types
+lib.kappa_sum.restype = ctypes.c_double
+lib.kappa_sum.argtypes = [
+    np.ctypeslib.ndpointer(dtype=np.float64, shape=(2,2)),
+    np.ctypeslib.ndpointer(dtype=np.float64, shape=(2,)),
+    np.ctypeslib.ndpointer(dtype=np.float64, shape=(2,)),
+    np.ctypeslib.ndpointer(dtype=np.float64, shape=(2,))
+]
+
+lib.compute_k.restype = ctypes.c_double
+ \end{lstlisting}
+    \end{frame}
+    \begin{frame}[fragile]
+    \frametitle{Python Shared}
+    \begin{lstlisting}
+# Given data (same as LaTeX)
+# ----------------------------
+k = 2.0
+V = np.array([[2, 0],
+              [0, 0]], dtype=np.float64)
+u = np.array([-k*np.sqrt(2)/2, 0], dtype=np.float64)
+h = np.array([0, 0], dtype=np.float64)
+m = np.array([1, 0], dtype=np.float64)
+
+# Call C function for kappa sum
+kappa_sum_val = lib.kappa_sum(V, u, h, m)
+print("Computed (κ₁ + κ₂) from .so =", np.round(kappa_sum_val, 4))
+
+# Check against √2
+print("Expected =", np.round(np.sqrt(2), 4))
+
+# Plot the conic and intersection points
+a, b, c = 2, -k*np.sqrt(2), 1
+D = b**2 - 4*a*c
+ \end{lstlisting}
+    \end{frame}
+    \begin{frame}[fragile]
+    \frametitle{Python Shared}
+    \begin{lstlisting}
+x1 = (-b + np.sqrt(D)) / (2*a)
+x2 = (-b - np.sqrt(D)) / (2*a)
+x_vals = np.array([x1, x2])
+y_vals = np.zeros(2)
+
+# Generate parabola
+x_plot = np.linspace(min(x_vals)-1, max(x_vals)+1, 400)
+y_plot = 2*x_plot**2 - k*np.sqrt(2)*x_plot + 1
+
+plt.figure(figsize=(7,5))
+plt.axhline(0, color='black', linewidth=1)
+plt.plot(x_plot, y_plot, 'b', label=r'$2x^2 - 2\sqrt{2}x + 1$')
+plt.scatter(x_vals, y_vals, color='red')
+ \end{lstlisting}
+    \end{frame}
+    \begin{frame}[fragile]
+    \frametitle{Python Shared}
+    \begin{lstlisting}
+# Label points
+for (x,y) in zip(x_vals, y_vals):
+    plt.text(x, y+0.2, f"({np.round(x,2)}, {np.round(y,2)})",
+             ha='center', va='bottom', color='darkred')
+
+plt.text(np.mean(x_vals), max(y_plot)/2,
+         f"(κ₁+κ₂) from C = {np.round(kappa_sum_val,3)} ≈ √2",
+         fontsize=10, color='purple', ha='center')
+
+plt.legend()
+plt.title("κ₁ + κ₂ from C shared library (Conic Intersection)")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.tight_layout()
+plt.show()
+
+    \end{lstlisting}
+    \end{frame}
+    \begin{frame}{Plot}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.75\linewidth]{figs/Fig_1.png}
+            \caption{}
+            \label{fig:placeholder}
+        \end{figure}
+    \end{frame}
+\end{document}

@@ -1,0 +1,112 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{article}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\graphicspath{{./figs/}}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}
+\usepackage{gvv}                                        
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{circuitikz}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+text width=4em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{sum} = [draw, fill=blue!10, circle, minimum size=1cm, node distance=1.5cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+
+
+\begin{document}
+	
+	\bibliographystyle{IEEEtran}
+	\vspace{3cm}
+	
+\title{9.2.7}
+\author{EE25BTECH11047 - RAVULA SHASHANK REDDY}
+\maketitle
+\hrulefill
+\bigskip 
+
+\renewcommand{\thetable}{\theenumi}
+\setlength{\intextsep}{10pt}
+
+\textbf{Question:} \\
+
+Find the area of the region bounded by the parabola $y^2 = x$ and the line $2y = x$.\\
+
+\textbf{Solution:}
+\begin{align}
+\vec{x}^T \vec{V} \vec{x} + 2\vec{u}^T\vec{x} + f = 0 \\
+\vec{V} = \myvec{0 & 0 \\ 0 & 1},\quad 
+\vec{u} = \myvec{-\tfrac{1}{2} \\ 0},\quad f=0 \\
+\end{align}
+\begin{align}
+\vec{x} &= \vec{h} + \kappa \vec{m}, \quad \kappa \in \mathbb{R} \\
+\vec{h} &= \myvec{0 \\ 0}, \quad 
+\vec{m} = \myvec{2 \\ 1} \\
+\vec{x}_i &= \vec{h} + \kappa_i \vec{m} 
+\end{align}
+
+Substituting eq-(6) in eq-(1) and Solving the Quadratic 
+\begin{align}
+\kappa_i = \frac{1}{\vec{m}^T \vec{V} \vec{m}}
+\brak{-\vec{m}^T(\vec{V}\vec{h}+\vec{u})
+\pm \sqrt{(\vec{m}^T(\vec{V}\vec{h}+\vec{u}))^2 - g(\vec{h})(\vec{m}^T \vec{V} \vec{m})}} 
+\end{align}
+\begin{align}
+g(\vec{h}) &= \vec{h}^T \vec{V} \vec{h} + 2\vec{u}^T \vec{h} + f\\
+\vec{V}\vec{m} &= \myvec{0 \\ 1},\quad 
+\vec{m}^T \vec{V} \vec{m} = 1 \\
+\vec{V}\vec{h}+\vec{u} &= \myvec{-\tfrac{1}{2} \\ 0},\quad
+\vec{m}^T(\vec{V}\vec{h}+\vec{u}) = -1 \\
+g(\vec{h}) &= 0\\
+\kappa_i &= -(-1) \pm \sqrt{(-1)^2 - 0} 
+= 1 \pm 1 \\
+\implies \kappa_1 &= 0,\;\; \kappa_2 = 2
+\end{align}
+
+\begin{align}
+\vec{x}_1 &= \vec{h} + 0\vec{m} = \myvec{0 \\ 0},\quad
+\vec{x}_2 = \vec{h} + 2\vec{m} = \myvec{4 \\ 2} \\
+\text{Area} &= \int_{0}^{2} \Big(2y - y^2\Big)\,dy 
+= \brak{y^2 - \tfrac{y^3}{3}}_0^2 
+= 4 - \tfrac{8}{3} 
+= \tfrac{4}{3}
+\end{align}
+\newpage
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{figs/Fig_1.png}
+    \caption{}
+    \label{fig:placeholder}
+\end{figure}
+\end{document}

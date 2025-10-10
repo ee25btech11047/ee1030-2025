@@ -68,18 +68,22 @@ Find the value of $k$ for which the matrix is singular.
 
 \textbf{Solution:}\\
 
-Singular matrix:
+Given
 \begin{align}
-\det\myvec{k & 8 \\ 1 & 2k} &= 0 \\
-k \cdot 2k - 1 \cdot 8 &= 0\\
-2k^2 - 8 &= 0 \\
-2k^2 &= 8 \\
-k^2 &= 4 
-\end{align}
-\begin{align}
-\boxed{
-k = \pm 2}
+\vec{A}&= \myvec{k & 8 \\ 1 & 2k} \\
+R_1 \leftrightarrow R_2 &\Rightarrow \myvec{1 & 2k \\ k & 8} \\
+R_2 \to R_2 - kR_1 &\Rightarrow \myvec{1 & 2k \\ 0 & 8 - 2k^2} 
 \end{align}
 
+For $\vec{A}$ to be singular, the second row must become zero because it should not be a full 
+
+rank matrix: 
+
+\begin{align}
+8 - 2k^2 &= 0 \\
+k^2 &= 4 \\
+k &= \pm 2 
+\end{align}
 
 \end{document}
+

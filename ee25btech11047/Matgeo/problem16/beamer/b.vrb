@@ -1,0 +1,20 @@
+\frametitle{Python Shared}
+    \begin{lstlisting}
+# Label points
+for (x,y) in zip(x_vals, y_vals):
+    plt.text(x, y+0.2, f"({np.round(x,2)}, {np.round(y,2)})",
+             ha='center', va='bottom', color='darkred')
+
+plt.text(np.mean(x_vals), max(y_plot)/2,
+         f"(κ₁+κ₂) from C = {np.round(kappa_sum_val,3)} ≈ √2",
+         fontsize=10, color='purple', ha='center')
+
+plt.legend()
+plt.title("κ₁ + κ₂ from C shared library (Conic Intersection)")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.tight_layout()
+plt.show()
+
+    \end{lstlisting}
