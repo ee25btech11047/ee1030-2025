@@ -1,0 +1,409 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+	breakable=true,
+	listing engine=minted,
+	listing only,
+	minted language=#2,
+	minted style=default,
+	minted options={%
+		linenos,
+		gobble=0,
+		breaklines=true,
+		breakafter=,,
+		fontsize=\small,
+		numbersep=8pt,
+		#1},
+	boxsep=0pt,
+	left skip=0pt,
+	right skip=0pt,
+	left=25pt,
+	right=0pt,
+	top=3pt,
+	bottom=3pt,
+	arc=5pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=2pt,
+	toprule=2pt,
+	colback=bg,
+	colframe=orange!70,
+	enhanced,
+	overlay={%
+		\begin{tcbclipinterior}
+			\fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+	\end{tcbclipinterior}},
+	#3,
+}
+\lstset{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	commentstyle=\color{green!60!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{5.2.49}
+%\subtitle{A short story}
+
+\author % (optional)
+{RAVULA SHASHANK REDDY - EE25BTECH11047}
+
+ \begin{document}
+	
+	
+	\frame{\titlepage}
+	\begin{frame}{Question}
+    Construct a pair of tangents to a circle of radius \(4\,\text{cm}\) from a point \(P\) at a distance of \(7\,\text{cm}\) from its centre \(O\).
+\end{frame}
+\begin{frame}{Solution}
+    Let the equation of the circle with centre $\vec{u}$ be
+\begin{align}
+(\vec{x} - \vec{u})^\top (\vec{x} - \vec{u}) = r^2,
+\end{align}
+
+Given,
+\begin{align}
+r = 4, \quad \|\vec{P} - \vec{u}\| = 7.
+\end{align}
+
+Let
+\begin{align}
+\vec{u}=\vec{0},\quad
+\vec{v} = \vec{P} - \vec{u}, \quad
+s = \vec{v}^\top \vec{v} = \|\vec{v}\|^2.
+\end{align}
+
+Define the orthonormal basis vectors as
+\begin{align}
+\vec{v_1} = \frac{\vec{v}}{\sqrt{s}}, \qquad
+\vec{v_2} = \frac{\vec{Jv}}{\sqrt{s}},\quad
+\vec{J} = \myvec{0 & -1 \\ 1 & 0}.
+\end{align}
+
+Let the unit normal to the tangent at the point of contact be expressed as
+\begin{align}
+\frac{\vec{n}}{\|\vec{n}\|} = \alpha \vec{v_1} + \beta \vec{v_2}. \label{eq:nexpand}
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+The points of contact on the circle are given by
+\begin{align}
+\vec{q_i} = \vec{u} + r\,\frac{\vec{n_i}}{\|\vec{n_i}\|}, \qquad i = 1,2.
+\end{align}
+Tangency condition:  \\
+
+For tangents from an external point \(\vec{P}\) to the circle, we have
+\begin{align}
+\vec{v}^\top \frac{\vec{n}}{\|\vec{n}\|} = r. \label{eq:tangency}
+\end{align}
+
+Substituting \eqref{eq:nexpand} into \eqref{eq:tangency}, and noting that
+\(\vec{v} = \sqrt{s}\,\vec{v_1}\) and \(\vec{v}^\top \vec{v_2} = 0\), we get
+\begin{align}
+\alpha \sqrt{s} = r
+\quad \Rightarrow \quad
+\boxed{\alpha = \frac{r}{\sqrt{s}}.} \label{eq:alpha}
+\end{align}
+
+ Unit length condition:
+\begin{align}
+\alpha^2 + \beta^2 &= 1. \label{eq:unit}
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+\begin{align}
+\beta^2 &= 1 - \frac{r^2}{s}
+\quad \Rightarrow \quad
+\boxed{\beta = \pm\sqrt{1 - \frac{r^2}{s}}.} \label{eq:beta}
+\end{align}
+
+Hence,
+\begin{align}
+\boxed{
+\frac{\vec{n}}{\|\vec{n}\|}
+=
+\frac{r}{\sqrt{s}}\,\vec{v_1}
+\;\pm\;
+\sqrt{1 - \frac{r^2}{s}}\,\vec{v_2}.
+} \label{eq:finaln}
+\end{align}
+
+\begin{align}
+\Rightarrow\;
+\boxed{
+\vec{q_i}
+=
+\vec{u}
++
+\frac{r^2}{\sqrt{s}}\,\vec{v_1}
+\;\pm\;
+r\sqrt{1 - \frac{r^2}{s}}\,\vec{v_2}.
+}
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+Given \(r=4,\ \sqrt{s}=7,\vec{u}=\vec{0}\),
+\begin{align}
+\frac{r^2}{\sqrt{s}} &= \frac{16}{7} \\
+r\sqrt{1 - \frac{r^2}{s}} &= 4\sqrt{1 - \frac{16}{49}} = \frac{4\sqrt{33}}{7}.
+\end{align}
+\begin{align}
+\vec{q_1} = \myvec{\dfrac{16}{7}\\[4pt]\dfrac{4\sqrt{33}}{7}},\quad
+\vec{q_2} = \myvec{\dfrac{16}{7}\\[4pt]-\dfrac{4\sqrt{33}}{7}}.
+\end{align}
+
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+ #include <stdio.h>
+#include <math.h>
+
+// Tangent function to be called from Python
+void tangent_points(double r, double px, double py, double *Ax, double *Ay, double *Bx, double *By) {
+    double ox = 0.0, oy = 0.0;
+    double d = sqrt((px - ox)*(px - ox) + (py - oy)*(py - oy));
+
+    if (d <= r) {
+        *Ax = *Ay = *Bx = *By = NAN;
+        return;
+    }
+
+    double r2 = r*r;
+    double d2 = d*d;
+    double k = r2 / d2;
+    double h = (r / d2) * sqrt(d2 - r2);
+    \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    *Ax = k*px - h*py;
+    *Ay = k*py + h*px;
+    *Bx = k*px + h*py;
+    *By = k*py - h*px;
+}
+
+\end{lstlisting}
+    
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+from numpy import linalg as LA
+
+# Local imports
+from libs.line.funcs import line_gen
+from libs.conics.funcs import circ_gen
+
+# --- Circle and external point ---
+O = np.array([[0.0], [0.0]])     # Centre
+r = 4.0                          # Radius
+P = np.array([[7.0], [0.0]])     # External point
+
+# --- Tangent point calculation ---
+u = P - O
+d = float(LA.norm(u))
+u_hat = u / d
+\end{lstlisting}
+    
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+# Rotation matrix for 90 degrees
+R90 = np.array([[0, -1], [1, 0]])
+
+# Tangent points formula
+r2 = r**2
+sqrt_term = np.sqrt(d**2 - r**2)
+
+A = O + (r2/d)*u_hat + (r/d)*sqrt_term*(R90 @ u_hat)
+B = O + (r2/d)*u_hat - (r/d)*sqrt_term*(R90 @ u_hat)
+
+# --- Generate required curves ---
+x_circ = circ_gen(O, r)
+x_tan1 = line_gen(P, A)
+x_tan2 = line_gen(P, B)
+x_OP = line_gen(O, P)
+
+# --- Plotting ---
+plt.plot(x_circ[0, :], x_circ[1, :] )
+\end{lstlisting}
+    
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+plt.plot(x_tan1[0, :], x_tan1[1, :], color='orange' )
+plt.plot(x_tan2[0, :], x_tan2[1, :], color='green' )
+plt.plot(x_OP[0, :], x_OP[1, :], 'k--')
+
+# --- Mark and label points (rounded neatly) ---
+points = {'O': O, 'P': P, 'A': A, 'B': B}
+for name, pt in points.items():
+    x, y = float(pt[0]), float(pt[1])
+    plt.scatter(x, y, s=45, zorder=5)
+    plt.text(x + 0.25, y + 0.25,
+             f'{name}({round(x,2)}, {round(y,2)})',
+             fontsize=9, ha='center')
+\end{lstlisting}
+    
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+# --- Axes setup ---
+ax = plt.gca()
+ax.spines['top'].set_color('none')
+ax.spines['right'].set_color('none')
+ax.spines['left'].set_position('zero')
+ax.spines['bottom'].set_position('zero')
+
+# --- Style ---
+plt.axis('equal')
+plt.grid(True)
+plt.xlabel('$x$')
+plt.ylabel('$y$')
+plt.title('Tangents from an External Point to a Circle')
+plt.legend(loc='upper right')
+plt.show()
+    
+\end{lstlisting}
+    
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+    import ctypes
+import numpy as np
+import matplotlib.pyplot as plt
+from libs.line.funcs import line_gen
+from libs.conics.funcs import circ_gen
+
+# Load the shared library
+lib = ctypes.CDLL('./libtangent.so')
+
+# Define argument and return types
+lib.tangent_points.argtypes = [
+    ctypes.c_double, ctypes.c_double, ctypes.c_double,
+    ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double),
+    ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double)
+]
+\end{lstlisting}
+    
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+# Inputs
+r = 4.0
+P = np.array([[7.0], [0.0]])
+
+# Prepare output containers
+Ax = ctypes.c_double()
+Ay = ctypes.c_double()
+Bx = ctypes.c_double()
+By = ctypes.c_double()
+
+# Call the C function
+lib.tangent_points(r, float(P[0]), float(P[1]),
+                   ctypes.byref(Ax), ctypes.byref(Ay),
+                   ctypes.byref(Bx), ctypes.byref(By))
+
+# Convert results to numpy arrays
+O = np.array([[0.0], [0.0]])
+A = np.array([[Ax.value], [Ay.value]])
+\end{lstlisting}
+    
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+B = np.array([[Bx.value], [By.value]])
+
+print("Tangent Points from C library:")
+print(f"A({A[0,0]:.2f}, {A[1,0]:.2f})")
+print(f"B({B[0,0]:.2f}, {B[1,0]:.2f})")
+# Plot using your libs
+x_circ = circ_gen(O, r)
+x_tan1 = line_gen(P, A)
+x_tan2 = line_gen(P, B)
+x_OP = line_gen(O, P)
+plt.plot(x_circ[0, :], x_circ[1, :], label='Circle')
+plt.plot(x_tan1[0, :], x_tan1[1, :], color='orange', label='Tangent 1')
+plt.plot(x_tan2[0, :], x_tan2[1, :], color='green', label='Tangent 2')
+plt.plot(x_OP[0, :], x_OP[1, :], 'k--', label='$OP$')
+# Mark and label points
+points = {'O': O, 'P': P, 'A': A, 'B': B}
+for name, pt in points.items():
+\end{lstlisting}
+    
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+    x, y = float(pt[0]), float(pt[1])
+    plt.scatter(x, y, s=45, zorder=5)
+    plt.text(x + 0.25, y + 0.25, f'{name}({round(x,2)}, {round(y,2)})',
+             fontsize=9, ha='center')
+# -style axes
+ax = plt.gca()
+ax.spines['top'].set_color('none')
+ax.spines['right'].set_color('none')
+ax.spines['left'].set_position('zero')
+ax.spines['bottom'].set_position('zero')
+plt.axis('equal')
+plt.grid(True)
+plt.xlabel('$x$')
+plt.ylabel('$y$')
+plt.title('Tangents from External Point (using C library)')
+plt.legend(loc='upper right')
+plt.show()
+
+\end{lstlisting}
+    
+\end{frame}
+\begin{frame}{Plot}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\linewidth]{figs/Fig_1.png}
+        \caption{}
+        \label{fig:placeholder}
+    \end{figure}
+\end{frame}
+\end{document}

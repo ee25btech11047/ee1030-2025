@@ -1,0 +1,283 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+	breakable=true,
+	listing engine=minted,
+	listing only,
+	minted language=#2,
+	minted style=default,
+	minted options={%
+		linenos,
+		gobble=0,
+		breaklines=true,
+		breakafter=,,
+		fontsize=\small,
+		numbersep=8pt,
+		#1},
+	boxsep=0pt,
+	left skip=0pt,
+	right skip=0pt,
+	left=25pt,
+	right=0pt,
+	top=3pt,
+	bottom=3pt,
+	arc=5pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=2pt,
+	toprule=2pt,
+	colback=bg,
+	colframe=orange!70,
+	enhanced,
+	overlay={%
+		\begin{tcbclipinterior}
+			\fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+	\end{tcbclipinterior}},
+	#3,
+}
+\lstset{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	commentstyle=\color{green!60!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{5.2.49}
+%\subtitle{A short story}
+
+\author % (optional)
+{RAVULA SHASHANK REDDY - EE25BTECH11047}
+
+ \begin{document}
+	
+	
+	\frame{\titlepage}
+	\begin{frame}{Question}
+     Find all circles that touch the $x$-axis at a distance $3$ from the origin and have a $y$-axis intercept of length $2\sqrt{7}$ .\\
+\end{frame}
+\begin{frame}{Solution}
+    \begin{align}
+\vec{x}^\top \vec{x} + 2 \vec{u}^\top \vec{x} + f &= 0, \quad \vec{C} = -\vec{u}, \quad r^2 = \vec{C}^\top \vec{C} - f \\
+\vec{e}_1 &= \myvec{1 \\ 0}, \quad \vec{e}_2 = \myvec{0 \\ 1}\\
+\quad \vec{C}&=\myvec{\vec{e}_1^\top \vec{C} \\ \vec{e}_2^\top \vec{C}}
+\end{align}
+
+Substituting y-axis in circle equation
+\begin{align}
+(y \vec{e}_2)^\top (y \vec{e}_2) + 2 \vec{u}^\top (y \vec{e}_2) + f &= 0 
+\\ \implies \quad 
+y^2 - 2 (\vec{C}^\top \vec{e}_2) y + f &= 0 \label{eq:m}
+\end{align}
+
+Here the square of Intercept equals to determinant of \eqref{eq:m}
+\begin{align}
+\Delta &= [-2 (\vec{C}^\top \vec{e}_2)]^2 - 4 f = 4 \big[ (\vec{C}^\top \vec{e}_2)^2 - f \big]=(2\sqrt{7})^2
+\end{align}
+\begin{align}
+(\vec{C}^\top \vec{e}_2)^2 - f &= 7 \label{eq:e}
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+\begin{align}
+\vec{C}^\top \vec{C} - f&=r^2 \label{eq:r}\\
+\eqref{eq:r}-\eqref{eq:e}\implies\vec{C}^\top \vec{C} - (\vec{C}^\top \vec{e}_2)^2 &= r^2 - 7 
+\quad \implies \quad (\vec{e}_1^\top \vec{C})^2 = r^2 - 7 
+\end{align}
+
+Since Circle touches x-axis at a distance 3 from origin. 
+\begin{align}
+|\vec{e}_2^\top \vec{C}|&=r\\
+|\vec{e}_1^\top \vec{C}| &= 3 \quad \implies r^2 = 16 \\
+(\vec{e}_2^\top \vec{C})^2 - f &= 7, \quad \implies f=9
+\end{align}
+\begin{align}
+\vec{C} = \myvec{\pm3 \\ \pm4}
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+\begin{align}
+\vec{x}^\top \vec{x} + 2(-\vec{C})^\top \vec{x} + f = 0 
+\end{align}
+\begin{align}
+\vec{x}^\top \vec{x} + 2 \myvec{-3 & -4} \vec{x} + 9 = 0, \quad
+\vec{x}^\top \vec{x} + 2 \myvec{-3 & 4} \vec{x} + 9 = 0, \\
+\vec{x}^\top \vec{x} + 2 \myvec{3 & -4} \vec{x} + 9 = 0, \quad
+\vec{x}^\top \vec{x} + 2 \myvec{3 & 4} \vec{x} + 9 = 0 
+\end{align}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    #include <stdio.h>
+#include <math.h>
+
+int main() {
+    double a = 3.0;
+    double L = 2.0 * sqrt(7.0);
+    double r = sqrt(a*a + (L/2)*(L/2));
+    double f = a*a + (L/2)*(L/2) - r*r;
+
+    double centers[4][2] = {
+        { a,  r},
+        { a, -r},
+        {-a,  r},
+        {-a, -r}
+    };
+    \end{lstlisting}  
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    for(int i=0; i<4; i++) {
+        double h = centers[i][0];
+        double k = centers[i][1];
+        printf("Circle %d: Centre = (%.2f, %.2f), Radius = %.2f\n", i+1, h, k, r);
+    }
+
+    printf("Constant term f = %.2f\n", f);
+    return 0;
+}
+
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+    import numpy as np
+import matplotlib.pyplot as plt
+from libs.conics.funcs import *
+
+a = 3
+L = 2*np.sqrt(7)
+r = float(np.sqrt(a**2 + (L/2)**2))
+f = float(a**2 + (L/2)**2 - r**2)
+
+centers = [
+    np.array([[ a],[ r]]),
+    np.array([[ a],[-r]]),
+    np.array([[-a],[ r]]),
+    np.array([[-a],[-r]])
+]
+
+for i,C in enumerate(centers,1):
+    u = -C
+    \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+    O,R = circ_param(u,f)
+    O = np.round(O,2)
+    R = round(float(R),2)
+    print(f"Circle {i}: Centre = ({O[0,0]}, {O[1,0]}), Radius = {r}")
+
+fig,ax=plt.subplots(figsize=(7,7))
+ax.set_aspect('equal',adjustable='box')
+ax.grid(True,linestyle='--',alpha=0.6)
+
+for i,C in enumerate(centers,1):
+    u = -C
+    O,R = circ_param(u,f)
+    O = np.round(O,2)
+    R = round(float(R),2)
+    circ = circ_gen(O,R)
+    \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+    ax.plot(circ[0,:],circ[1,:],linewidth=1.8)
+    ax.scatter(O[0],O[1],color='black',s=25)
+    ax.text(O[0]-0.7,O[1]-0.4,f"C{i}({O[0,0]},{O[1,0]})",fontsize=10,bbox=dict(boxstyle="round,pad=0.2",fc="white",alpha=0.7))
+
+ax.axhline(0,color='gray',linewidth=1)
+ax.axvline(0,color='gray',linewidth=1)
+ax.set_xlim(-10,10)
+ax.set_ylim(-10,10)
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_title("Circles touching x-axis at distance 3 and y-intercept 2√7")
+plt.show()
+
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+    import ctypes
+import numpy as np
+
+lib = ctypes.CDLL("./circles.so")
+
+lib.compute_circles.argtypes = [
+    ctypes.c_double,
+    ctypes.c_double,
+    np.ctypeslib.ndpointer(dtype=np.float64, shape=(4,2)),
+    ctypes.POINTER(ctypes.c_double),
+    ctypes.POINTER(ctypes.c_double)
+]
+
+lib.compute_circles.restype = None
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+a = 3.0
+L = 2*np.sqrt(7)
+centers = np.zeros((4,2), dtype=np.float64)
+r = ctypes.c_double()
+f = ctypes.c_double()
+
+lib.compute_circles(a, L, centers, ctypes.byref(r), ctypes.byref(f))
+
+print("Results from shared library:\n")
+for i in range(4):
+    h, k = centers[i]
+    print(f"Circle {i+1}: Centre = ({round(h,2)}, {round(k,2)}), Radius = {round(r.value,2)}")
+
+print(f"\nConstant term f = {round(f.value,2)}")
+
+\end{lstlisting}
+\end{frame}
+\begin{frame}{Plot}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{figs/Fig_1.png}
+        \caption{}
+        \label{fig:placeholder}
+    \end{figure}
+\end{frame}
+\end{document}

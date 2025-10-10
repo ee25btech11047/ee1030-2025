@@ -1,0 +1,117 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{article}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\graphicspath{{./figs/}}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}
+\usepackage{gvv}                                        
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{circuitikz}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+text width=4em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{sum} = [draw, fill=blue!10, circle, minimum size=1cm, node distance=1.5cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+
+
+\begin{document}
+	
+	\bibliographystyle{IEEEtran}
+	\vspace{3cm}
+	
+\title{10.7.95}
+\author{EE25BTECH11047 - RAVULA SHASHANK REDDY}
+\maketitle
+\hrulefill
+\bigskip 
+
+\renewcommand{\thetable}{\theenumi}
+\setlength{\intextsep}{10pt}
+
+\textbf{Question:} \\
+
+ Find all circles that touch the $x$-axis at a distance $3$ from the origin and have a $y$-axis 
+ 
+ intercept of length $2\sqrt{7}$ .\\
+ 
+\textbf{Solution:}
+\begin{align}
+\vec{x}^\top \vec{x} + 2 \vec{u}^\top \vec{x} + f &= 0, \quad \vec{C} = -\vec{u}, \quad r^2 = \vec{C}^\top \vec{C} - f \\
+\vec{e}_1 &= \myvec{1 \\ 0}, \quad \vec{e}_2 = \myvec{0 \\ 1}\\
+\quad \vec{C}&=\myvec{\vec{e}_1^\top \vec{C} \\ \vec{e}_2^\top \vec{C}}
+\end{align}
+
+Substituting y-axis in circle equation
+\begin{align}
+(y \vec{e}_2)^\top (y \vec{e}_2) + 2 \vec{u}^\top (y \vec{e}_2) + f &= 0 
+\\ \implies \quad 
+y^2 - 2 (\vec{C}^\top \vec{e}_2) y + f &= 0 \label{eq:m}
+\end{align}
+
+Here the square of Intercept equals to determinant of \eqref{eq:m}
+\begin{align}
+\Delta &= [-2 (\vec{C}^\top \vec{e}_2)]^2 - 4 f = 4 \big[ (\vec{C}^\top \vec{e}_2)^2 - f \big]=(2\sqrt{7})^2
+\end{align}
+\begin{align}
+(\vec{C}^\top \vec{e}_2)^2 - f &= 7 \label{eq:e}\\
+\vec{C}^\top \vec{C} - f&=r^2 \label{eq:r}\\
+\eqref{eq:r}-\eqref{eq:e}\implies\vec{C}^\top \vec{C} - (\vec{C}^\top \vec{e}_2)^2 &= r^2 - 7 
+\quad \implies \quad (\vec{e}_1^\top \vec{C})^2 = r^2 - 7 
+\end{align}
+
+Since Circle touches x-axis at a distance 3 from origin. 
+\begin{align}
+|\vec{e}_2^\top \vec{C}|&=r\\
+|\vec{e}_1^\top \vec{C}| &= 3 \quad \implies r^2 = 16 \\
+(\vec{e}_2^\top \vec{C})^2 - f &= 7, \quad \implies f=9
+\end{align}
+\begin{align}
+\vec{C} = \myvec{\pm3 \\ \pm4}\\
+\vec{x}^\top \vec{x} + 2(-\vec{C})^\top \vec{x} + f = 0 
+\end{align}
+\begin{align}
+\vec{x}^\top \vec{x} + 2 \myvec{-3 & -4} \vec{x} + 9 = 0, \quad
+\vec{x}^\top \vec{x} + 2 \myvec{-3 & 4} \vec{x} + 9 = 0, \\
+\vec{x}^\top \vec{x} + 2 \myvec{3 & -4} \vec{x} + 9 = 0, \quad
+\vec{x}^\top \vec{x} + 2 \myvec{3 & 4} \vec{x} + 9 = 0 
+\end{align}
+\newpage
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{figs/Fig_1.png}
+    \caption{}
+    \label{fig:placeholder}
+\end{figure}
+\end{document}
+
