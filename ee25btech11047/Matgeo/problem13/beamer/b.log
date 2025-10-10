@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.8.29)  1 OCT 2025 18:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.8.29)  10 OCT 2025 14:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1745,8 +1745,12 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/
 dvips/lm/lm-mathsy.enc}]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 120--120
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 138--138
  [][]  
+ []
+
+
+Overfull \vbox (1.42786pt too high) detected at line 138
  []
 
 
@@ -1759,14 +1763,14 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [4
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 122--122
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 140--140
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 139--139
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 157--157
  [][]  
  []
 
@@ -1785,14 +1789,14 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [5
 
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 141--141
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 159--159
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 161--161
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 179--179
  [][]  
  []
 
@@ -1867,14 +1871,14 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [6
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 163--163
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 181--181
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 184--184
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 202--202
  [][]  
  []
 
@@ -1949,14 +1953,14 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [7
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 186--186
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 204--204
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 200--200
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 218--218
  [][]  
  []
 
@@ -2011,14 +2015,14 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [8
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 202--202
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 220--220
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 214--214
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 232--232
  [][]  
  []
 
@@ -2132,7 +2136,7 @@ blic/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso10.pfb></usr/
 share/texmf/fonts/type1/public/lm/lmsso8.pfb></usr/share/texmf/fonts/type1/publ
 ic/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/
 texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on b.pdf (9 pages, 164479 bytes).
+Output written on b.pdf (9 pages, 165124 bytes).
 PDF statistics:
  341 PDF objects out of 1000 (max. 8388607)
  280 compressed objects within 3 object streams
