@@ -61,101 +61,152 @@ text width=4em, text centered, rounded corners, minimum height=3em]
 
 \textbf{Question:} \\
 
-Construct a pair of tangents to a circle of radius \(4\,\text{cm}\) from a point \(P\) at a distance of 
+Construct a pair of tangents to a circle of radius \(4\,cm\) from a point \(P\) at a distance of 
 
-\(7\,\text{cm}\) from its centre \(O\), using matrix methods.
+\(7\,cm\) from its centre \(O\).
 
 \textbf{Solution:}\\
 
-Let the equation of the circle with centre $\vec{u}$ be
+Given:\\
+
+Let the centre be origin and P lies on x axis. 
 \begin{align}
-(\vec{x} - \vec{u})^\top (\vec{x} - \vec{u}) = r^2,
+\vec{x}^T\vec{x} = 16 \label{eq1} \\
+\vec{P} = \myvec{7\\0}, 
 \end{align}
 
-Given,
+Equation of a line through  $\vec{P}$  with direction  $\vec{d}$:
 \begin{align}
-r = 4, \quad \|\vec{P} - \vec{u}\| = 7.
+&\vec{x} = \vec{P} + t\vec{d}, 
+\quad t\in\mathbb{R}.
+\label{eq2}
+\end{align}
+\begin{align}
+\text{Substitute} \quad \eqref{eq2} in \eqref{eq1}:
+(\vec{P}+t\vec{d})^T(\vec{P}+t\vec{d}) = 16 \nonumber\\
+\Rightarrow 
+(\vec{d}^T\vec{d})t^2 
++ 2(\vec{P}^T\vec{d})t 
++ (\vec{P}^T\vec{P} - 16) = 0
+\label{eq3}
+\end{align}
+
+For tangency, discriminant = 0: 
+\begin{align}
+(2\vec{P}^T\vec{d})^2 
+- 4(\vec{d}^T\vec{d})(\vec{P}^T\vec{P} - 16) = 0 \nonumber\\
+\Rightarrow 
+(\vec{P}^T\vec{d})^2 
+= (\vec{d}^T\vec{d})(\vec{P}^T\vec{P} - 16)
+\label{eq4}
+\end{align}
+
+\begin{align}
+\vec{P}^T\vec{P} &= 49, \\
+(\vec{P}^T\vec{d})^2 &= 33(\vec{d}^T\vec{d}).\\
+\text{For a unit vector } \vec{d},\nonumber\\ 
+\ \vec{d}^T\vec{d} &= 1 
+\Rightarrow 
+(\vec{P}^T\vec{d})^2 = 33
+\label{eq5}
 \end{align}
 
 Let
 \begin{align}
-\vec{u}=\vec{0},\quad
-\vec{v} = \vec{P} - \vec{u}, \quad
-s = \vec{v}^\top \vec{v} = \|\vec{v}\|^2.
-\end{align}
-
-Define the orthonormal basis vectors as
-\begin{align}
-\vec{u_1} = \frac{\vec{v}}{\sqrt{s}}, \qquad
-\vec{u_2} = \frac{\vec{Jv}}{\sqrt{s}}\\
-\vec{J} = \myvec{0 & -1 \\ 1 & 0}.
-\end{align}
-
-Let the unit normal to the tangent at the point of contact be expressed as
-\begin{align}
-\frac{\vec{n}}{\|\vec{n}\|} = \alpha \vec{u_1} + \beta \vec{u_2}. \label{eq:nexpand}
-\end{align}
-The points of contact on the circle are given by
-\begin{align}
-\vec{q_i} = \vec{u} + r\,\frac{\vec{n_i}}{\|\vec{n_i}\|}, \qquad i = 1,2.
-\end{align}
-Tangency condition:  \\
-
-For tangents from an external point \(\vec{P}\) to the circle, we have
-\begin{align}
-\vec{v}^\top \frac{\vec{n}}{\|\vec{n}\|} = r. \label{eq:tangency}
-\end{align}
-
-Substituting \eqref{eq:nexpand} into \eqref{eq:tangency}, and noting that
-\(\vec{v} = \sqrt{s}\,\vec{u_1}\) and \(\vec{v}^\top \vec{u_2} = 0\), we get
-\begin{align}
-\alpha \sqrt{s} = r
-\quad \Rightarrow \quad
-\boxed{\alpha = \frac{r}{\sqrt{s}}.} \label{eq:alpha}
-\end{align}
-
- Unit length condition:
-\begin{align}
-\alpha^2 + \beta^2 &= 1. \label{eq:unit}\\
-\beta^2 &= 1 - \frac{r^2}{s}
-\quad \Rightarrow \quad
-\boxed{\beta = \pm\sqrt{1 - \frac{r^2}{s}}.} \label{eq:beta}
-\end{align}
-
-Hence,
-\begin{align}
-\boxed{
-\frac{\vec{n}}{\|\vec{n}\|}
-=
-\frac{r}{\sqrt{s}}\,\vec{u_1}
-\;\pm\;
-\sqrt{1 - \frac{r^2}{s}}\,\vec{u_2}.
-} \label{eq:finaln}
-\end{align}
-
-
-\begin{align}
-\Rightarrow\;
-\boxed{
-\vec{q_i}
-=
-\vec{u}
-+
-\frac{r^2}{\sqrt{s}}\,\vec{u_1}
-\;\pm\;
-r\sqrt{1 - \frac{r^2}{s}}\,\vec{u_2}.
-}
-\end{align}
-
-Given \(r=4,\ \sqrt{s}=7 ,\vec{u}=\vec{0}\),
-\begin{align}
-\frac{r^2}{\sqrt{s}} &= \frac{16}{7} \\
-r\sqrt{1 - \frac{r^2}{s}} &= 4\sqrt{1 - \frac{16}{49}} = \frac{4\sqrt{33}}{7}.
+\vec{M} = \vec{P}\vec{P}^T\implies 
+\vec{d}^T\vec{M}\vec{d} &= (\vec{P}^T\vec{d})^2 \\ 
+\vec{d}^T\vec{M}\vec{d} = 33, 
+\label{eq6}
 \end{align}
 
 \begin{align}
-\vec{q_1} = \myvec{\dfrac{16}{7}\\[4pt]\dfrac{4\sqrt{33}}{7}},\quad
-\vec{q_2} = \myvec{\dfrac{16}{7}\\[4pt]-\dfrac{4\sqrt{33}}{7}}.
+\vec{M} 
+= \vec{P}\vec{P}^T 
+= 
+\myvec{7\\0}\myvec{7 & 0}
+= 
+\myvec{49 & 0\\0 & 0}
+\label{eq7}
+\end{align}
+
+Eigen values and Eigen vectors of M:
+\begin{align}
+\lambda_1 &= 49, 
+\ \lambda_2 = 0. \nonumber\\
+\vec{e}_1 &= \myvec{1\\0}, 
+\quad 
+\vec{e}_2 = \myvec{0\\1}
+\label{eq8}
+\end{align}
+
+$\vec{d}$ in orthonormal Eigenbasis : \quad $\vec{d}^T\vec{d} = 1$
+ \begin{align}
+\vec{d} 
+= \alpha\vec{e}_1 + \beta\vec{e}_2, 
+\quad 
+\alpha^2 + \beta^2 = 1
+\label{eq9}\\
+\vec{d}^T\vec{M}\vec{d} 
+= \lambda_1\alpha^2 + \lambda_2\beta^2 \\
+\Rightarrow 
+\vec{d}^T\vec{M}\vec{d} 
+= 49\alpha^2 + 0\cdot\beta^2 
+= 49\alpha^2
+\label{eq10}\\
+From \quad \eqref{eq6}, 
+49\alpha^2 = 33 
+\Rightarrow 
+\alpha &= \pm\frac{\sqrt{33}}{7}. \\
+\Rightarrow 
+\beta = \pm\frac{4}{7}
+\label{eq11}
+\end{align}
+
+Hence $\vec{d}$ is:
+\begin{align}
+&\therefore 
+\vec{d}
+= 
+\myvec{\frac{\sqrt{33}}{7}\\[3pt]\pm\frac{4}{7}}
+\label{eq12}
+\end{align}
+
+From $\eqref{eq3}$ and $\eqref{eq5}$
+\begin{align}
+t &= -\frac{\vec{P}^T\vec{d}}{\vec{d}^T\vec{d}}. \nonumber\\
+\Rightarrow 
+t &= -\sqrt{33}
+\label{eq13}
+\end{align}
+
+Required Points of Contact
+\begin{align}
+\vec{T} 
+&= \vec{P} + t\vec{d} 
+= \vec{P} - \sqrt{33}\vec{d}
+\label{eq14}\\
+\vec{P} &= \myvec{7\\0}, 
+ \vec{d} = 
+\myvec{\frac{\sqrt{33}}{7}\\[3pt]\pm\frac{4}{7}}: \\
+\vec{T} 
+&= 
+\myvec{7\\0} 
+- \sqrt{33}
+\myvec{\frac{\sqrt{33}}{7}\\[3pt]\pm\frac{4}{7}} 
+= 
+\myvec{\frac{16}{7}\\[3pt]\mp\frac{4\sqrt{33}}{7}}
+\label{eq15}\\
+\vec{T}_1 &= \myvec{\frac{16}{7}\\[3pt]\frac{4\sqrt{33}}{7}}, 
+\quad 
+\vec{T}_2 = \myvec{\frac{16}{7}\\[3pt]-\frac{4\sqrt{33}}{7}}
+\label{eq16}
+\end{align}
+
+
+Equation of tangents :
+\begin{align}
+\vec{x}= \myvec{7 & 0}^T +k\myvec{\frac{\sqrt{33}}{7}&\frac{4}{7}}^T\\
+\vec{x}= \myvec{7 & 0}^T +k\myvec{\frac{\sqrt{33}}{7}&-\frac{4}{7}}^T
 \end{align}
 \newpage
 \begin{figure}

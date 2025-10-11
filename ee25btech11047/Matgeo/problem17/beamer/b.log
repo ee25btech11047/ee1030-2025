@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.8.29)  10 OCT 2025 15:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.8.29)  11 OCT 2025 19:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1721,18 +1721,22 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [2
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 119--119
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 124--124
  [][]  
  []
 
 LaTeX Font Info:    Font shape `OT1/lmss/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 119.
+(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 124.
 
 LaTeX Font Info:    Font shape `OT1/lmss/b/n' in size <8> not available
-(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 119.
+(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 124.
 
 LaTeX Font Info:    Font shape `OT1/lmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 119.
+(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 124.
+
+
+Overfull \vbox (7.36394pt too high) detected at line 124
+ []
 
 
 
@@ -1743,9 +1747,9 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 
 [3
 
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/
-dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 144--144
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/
+dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}]
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 153--153
  [][]  
  []
 
@@ -1759,7 +1763,7 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [4
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 175--175
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 187--187
  [][]  
  []
 
@@ -1773,8 +1777,12 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [5
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 187--187
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 224--224
  [][]  
+ []
+
+
+Overfull \vbox (3.06107pt too high) detected at line 224
  []
 
 
@@ -1787,24 +1795,8 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [6
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 189--189
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 240--240
  [][]  
- []
-
-\openout4 = `b.vrb'.
-
-
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 209--209
- [][]  
- []
-
-(./b.vrb
-LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 
-2.
- (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
-File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-))
-Overfull \vbox (1.72923pt too high) detected at line 209
  []
 
 
@@ -1816,19 +1808,28 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 
 [7
 
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 211--211
+]
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 242--242
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 221--221
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 262--262
  [][]  
  []
 
-(./b.vrb)
+(./b.vrb
+LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 
+2.
+ (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
+File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+))
+Overfull \vbox (1.72923pt too high) detected at line 262
+ []
+
+
 
 
 Overfull \hbox (18.9395pt too wide) has occurred while \output is active
@@ -1837,15 +1838,15 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 
 [8
 
-]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 223--223
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}]
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 264--264
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 244--244
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 274--274
  [][]  
  []
 
@@ -1859,22 +1860,18 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [9
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 246--246
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 276--276
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 268--268
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 297--297
  [][]  
  []
 
 (./b.vrb)
-Overfull \vbox (1.72923pt too high) detected at line 268
- []
-
-
 
 
 Overfull \hbox (18.9395pt too wide) has occurred while \output is active
@@ -1884,14 +1881,39 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [10
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 270--270
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 299--299
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 286--286
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 321--321
+ [][]  
+ []
+
+(./b.vrb)
+Overfull \vbox (1.72923pt too high) detected at line 321
+ []
+
+
+
+
+Overfull \hbox (18.9395pt too wide) has occurred while \output is active
+ [][]  
+ []
+
+[11
+
+]
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 323--323
+ [][]  
+ []
+
+\openout4 = `b.vrb'.
+
+
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 339--339
  [][]  
  []
 
@@ -1907,38 +1929,17 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
  [][]  
  []
 
-[11
-
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 288--288
- [][]  
- []
-
-\openout4 = `b.vrb'.
-
-
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 308--308
- [][]  
- []
-
-(./b.vrb)
-
-
-Overfull \hbox (18.9395pt too wide) has occurred while \output is active
- [][]  
- []
-
 [12
 
-]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 310--310
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}]
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 341--341
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 329--329
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 361--361
  [][]  
  []
 
@@ -1952,22 +1953,18 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [13
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 331--331
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 363--363
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 353--353
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 382--382
  [][]  
  []
 
 (./b.vrb)
-Overfull \vbox (1.72923pt too high) detected at line 353
- []
-
-
 
 
 Overfull \hbox (18.9395pt too wide) has occurred while \output is active
@@ -1977,14 +1974,39 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [14
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 355--355
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 384--384
  [][]  
  []
 
 \openout4 = `b.vrb'.
 
 
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 376--376
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 406--406
+ [][]  
+ []
+
+(./b.vrb)
+Overfull \vbox (1.72923pt too high) detected at line 406
+ []
+
+
+
+
+Overfull \hbox (18.9395pt too wide) has occurred while \output is active
+ [][]  
+ []
+
+[15
+
+]
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 408--408
+ [][]  
+ []
+
+\openout4 = `b.vrb'.
+
+
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 429--429
  [][]  
  []
 
@@ -2050,32 +2072,7 @@ l.7 print(f"B({B[0,0]:.2f}, {B[1,0]:.2f})"
                                           )
 ? 
 )
-Overfull \vbox (13.72923pt too high) detected at line 376
- []
-
-
-
-
-Overfull \hbox (18.9395pt too wide) has occurred while \output is active
- [][]  
- []
-
-[15
-
-]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 378--378
- [][]  
- []
-
-\openout4 = `b.vrb'.
-
-
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 400--400
- [][]  
- []
-
-(./b.vrb)
-Overfull \vbox (1.72923pt too high) detected at line 400
+Overfull \vbox (13.72923pt too high) detected at line 429
  []
 
 
@@ -2088,17 +2085,19 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 [16
 
 ]
-Overfull \hbox (18.9395pt too wide) in paragraph at lines 408--408
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 431--431
  [][]  
  []
 
-<figs/Fig_1.png, id=496, 462.528pt x 346.896pt>
-File: figs/Fig_1.png Graphic file (type png)
-<use figs/Fig_1.png>
-Package pdftex.def Info: figs/Fig_1.png  used on input line 408.
-(pdftex.def)             Requested size: 256.72147pt x 192.55072pt.
+\openout4 = `b.vrb'.
 
-Overfull \vbox (1.0244pt too high) detected at line 408
+
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 453--453
+ [][]  
+ []
+
+(./b.vrb)
+Overfull \vbox (1.72923pt too high) detected at line 453
  []
 
 
@@ -2110,6 +2109,29 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 
 [17
 
+]
+Overfull \hbox (18.9395pt too wide) in paragraph at lines 461--461
+ [][]  
+ []
+
+<figs/Fig_1.png, id=566, 462.528pt x 346.896pt>
+File: figs/Fig_1.png Graphic file (type png)
+<use figs/Fig_1.png>
+Package pdftex.def Info: figs/Fig_1.png  used on input line 461.
+(pdftex.def)             Requested size: 256.72147pt x 192.55072pt.
+
+Overfull \vbox (1.0244pt too high) detected at line 461
+ []
+
+
+
+
+Overfull \hbox (18.9395pt too wide) has occurred while \output is active
+ [][]  
+ []
+
+[18
+
  <./figs/Fig_1.png>]
 \tf@nav=\write7
 \openout7 = `b.nav'.
@@ -2120,7 +2142,7 @@ Overfull \hbox (18.9395pt too wide) has occurred while \output is active
 \tf@snm=\write9
 \openout9 = `b.snm'.
 
-runsystem(latexminted cleantemp  --timestamp 20251010151815 92EB5FFEE6AE2FEC3AD
+runsystem(latexminted cleantemp  --timestamp 20251011191455 92EB5FFEE6AE2FEC3AD
 71C777531578F)...executed safely (allowed).
 
  (./b.aux)
@@ -2128,28 +2150,34 @@ runsystem(latexminted cleantemp  --timestamp 20251010151815 92EB5FFEE6AE2FEC3AD
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `b.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 59136 strings out of 475135
- 1431136 string characters out of 5765398
+ 59160 strings out of 475135
+ 1431197 string characters out of 5765398
  2588870 words of memory out of 5000000
- 81115 multiletter control sequences out of 15000+600000
+ 81127 multiletter control sequences out of 15000+600000
  600504 words of font info for 78 fonts, out of 8000000 for 9000
  39 hyphenation exceptions out of 8191
- 101i,20n,107p,1169b,1461s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,19n,107p,1169b,1461s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/ty
 pe1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/p
 ublic/lm/lmss8.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/s
 hare/texmf/fonts/type1/public/lm/lmsso10.pfb></usr/share/texmf/fonts/type1/publ
-ic/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/
-texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on b.pdf (17 pages, 222924 bytes).
+ic/lm/lmsso8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share
+/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/
+lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb>
+Output written on b.pdf (18 pages, 246132 bytes).
 PDF statistics:
- 587 PDF objects out of 1000 (max. 8388607)
- 500 compressed objects within 5 object streams
- 42 named destinations out of 1000 (max. 500000)
+ 672 PDF objects out of 1000 (max. 8388607)
+ 549 compressed objects within 6 object streams
+ 54 named destinations out of 1000 (max. 500000)
  84 words of extra memory for PDF output out of 10000 (max. 10000000)
 
