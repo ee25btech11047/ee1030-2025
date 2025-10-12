@@ -1,0 +1,177 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+	breakable=true,
+	listing engine=minted,
+	listing only,
+	minted language=#2,
+	minted style=default,
+	minted options={%
+		linenos,
+		gobble=0,
+		breaklines=true,
+		breakafter=,,
+		fontsize=\small,
+		numbersep=8pt,
+		#1},
+	boxsep=0pt,
+	left skip=0pt,
+	right skip=0pt,
+	left=25pt,
+	right=0pt,
+	top=3pt,
+	bottom=3pt,
+	arc=5pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=2pt,
+	toprule=2pt,
+	colback=bg,
+	colframe=orange!70,
+	enhanced,
+	overlay={%
+		\begin{tcbclipinterior}
+			\fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+	\end{tcbclipinterior}},
+	#3,
+}
+\lstset{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	commentstyle=\color{green!60!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{12.684}
+%\subtitle{A short story}
+
+\author % (optional)
+{RAVULA SHASHANK REDDY - EE25BTECH11047}
+
+ \begin{document}
+	
+	
+	\frame{\titlepage}
+	\begin{frame}{Question}
+    If $\vec{A}$ is a square matrix then the orthogonality property mandates:
+
+\begin{enumerate}[label=\alph*)]
+\item $\vec{A}\vec{A}^\top = \vec{I}$
+\item $\vec{A}\vec{A}^\top = 0$
+\item $\vec{A}\vec{A}^\top = \vec{A}^{-1}$
+\item $\vec{A}\vec{A}^\top = \vec{A}$
+\end{enumerate}
+\end{frame}
+\begin{frame}{Solution}
+    A square matrix $\vec{A}$ is orthogonal if its transpose equals its inverse: 
+\begin{align}
+& \vec{A}^\top = \vec{A}^{-1} 
+\end{align}
+
+Multiplying both sides on the left by $\vec{A}$:
+\begin{align}
+& \vec{A} \vec{A}^\top = \vec{A} \vec{A}^{-1} \notag \\
+& \implies \vec{A}\vec{A}^\top = \vec{I}
+\end{align}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    #include <stdio.h>
+#include <math.h>
+
+#define N 3  // Dimension of the square matrix
+#define EPS 1e-6  // Tolerance for floating-point comparison
+
+int main() {
+    int i, j, k;
+    double A[N][N] = {
+        {1/sqrt(2), -1/sqrt(2), 0},
+        {1/sqrt(2),  1/sqrt(2), 0},
+        {0,          0,         1}
+    };
+    double AA_T[N][N] = {0};
+
+    // Compute AA^T
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < N; j++) {
+        \end{lstlisting}
+        \end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+            for(k = 0; k < N; k++) {
+                AA_T[i][j] += A[i][k] * A[j][k]; 
+            }
+        }
+    }
+    int isOrthogonal = 1;
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < N; j++) {
+            if(i == j && fabs(AA_T[i][j] - 1) > EPS) isOrthogonal = 0;
+            if(i != j && fabs(AA_T[i][j]) > EPS) isOrthogonal = 0;
+        }
+    }
+if(isOrthogonal)printf("Matrix A is orthogonal");
+else
+printf("Matrix A is not orthogonal");
+    return 0;
+}
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+    import numpy as np
+
+# Define a square matrix A
+A = np.array([
+    [1/np.sqrt(2), -1/np.sqrt(2), 0],
+    [1/np.sqrt(2),  1/np.sqrt(2), 0],
+    [0,             0,            1]
+])
+
+# Compute A * A^T
+AA_T = A @ A.T
+
+# Check if AA^T is identity
+if np.allclose(AA_T, np.eye(A.shape[0])):
+    print("Matrix A is orthogonal.")
+else:
+    print("Matrix A is not orthogonal.")
+\end{lstlisting}
+\end{frame}
+
+\end{document}

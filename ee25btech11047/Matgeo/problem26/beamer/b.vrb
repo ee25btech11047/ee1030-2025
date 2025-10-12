@@ -1,0 +1,12 @@
+\frametitle{Python Direct}
+\begin{lstlisting}
+if np.isclose(sum_b, 0):
+    print("Option c) TRUE")
+else:
+    print("Option c) FALSE")
+
+if rank == 3:
+    print("Option d) TRUE")
+else:
+    print("Option d) FALSE")
+\end{lstlisting}
