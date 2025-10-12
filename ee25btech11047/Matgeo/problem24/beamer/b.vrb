@@ -1,0 +1,13 @@
+\frametitle{Python Direct}
+\begin{lstlisting}
+    # Dimension of W1 ∩ W2
+    dimIntersection = dimW1 - 1  # trace constraint reduces 1 real dimension
+
+    # Dimension of W1 + W2
+    dimSum = dimW1 + dimW2 - dimIntersection
+    return dimSum
+
+if __name__ == "__main__":
+    n = 3  # 3x3 matrix
+    print(dimension_W1_plus_W2(n))
+\end{lstlisting}

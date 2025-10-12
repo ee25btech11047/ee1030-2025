@@ -1,0 +1,20 @@
+\frametitle{Python Shared}
+\begin{lstlisting}
+], dtype=np.double)
+
+f = np.array([1.0, 1.0, 1.0], dtype=np.double)
+alpha = np.zeros(3, dtype=np.double)
+
+# Convert numpy arrays to ctypes
+U_ctypes = (ctypes.c_double * 3 * 3)(*map(lambda row: (ctypes.c_double * 3)(*row), U))
+f_ctypes = (ctypes.c_double * 3)(*f)
+alpha_ctypes = (ctypes.c_double * 3)(*alpha)
+
+# Call C function
+lib.compute_alpha(U_ctypes, f_ctypes, alpha_ctypes)
+
+# Convert result back to numpy array
+alpha_result = np.array(list(alpha_ctypes))
+
+print("alpha =", alpha_result)
+\end{lstlisting}

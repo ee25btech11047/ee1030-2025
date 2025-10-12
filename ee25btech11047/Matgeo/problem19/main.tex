@@ -1,0 +1,102 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{article}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\graphicspath{{./figs/}}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}
+\usepackage{gvv}                                        
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{circuitikz}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+text width=4em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{sum} = [draw, fill=blue!10, circle, minimum size=1cm, node distance=1.5cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+
+
+\begin{document}
+	
+	\bibliographystyle{IEEEtran}
+	\vspace{3cm}
+	
+\title{12.60}
+\author{EE25\vec{B}TECH11047 - RAVULA SHASHANK REDDY}
+\maketitle
+\hrulefill
+\bigskip 
+
+\renewcommand{\thetable}{\theenumi}
+\setlength{\intextsep}{10pt}
+
+\textbf{Question:} \\
+
+ A square matrix $\vec{B}$ is skew-symmetric if 
+\begin{multicols}{4}
+\begin{enumerate}[label=\alph*)]
+    \item  $\vec{B}^\top = -\vec{B}$ 
+    \item  $\vec{B}^\top = \vec{B}$ 
+    \item  $\vec{B}^{-1} = \vec{B}$ 
+    \item  $\vec{B}^{-1} = \vec{B}^\top$ 
+\end{enumerate}
+\end{multicols}
+
+\textbf{Solution:}\\
+
+ $\vec{B}$ is a skew-symmetric, then by quadratic property 
+ \begin{align}
+\vec{x}^\top \vec{B} \vec{x} = 0 \quad \forall \vec{x} \in \mathbb{R}^n
+\end{align}
+
+Consider two vectors $\vec{x}, \vec{y} \in \mathbb{R}^n $ :
+
+\begin{align}
+&(\vec{x}+\vec{y})^\top \vec{B} (\vec{x}+\vec{y}) = \vec{x}^\top \vec{B} \vec{x} + \vec{x}^\top \vec{B} \vec{y} + \vec{y}^\top \vec{B} \vec{x} + \vec{y}^\top \vec{B} \vec{y} \\[1mm]
+&\text{Since } \vec{x}^\top \vec{B} \vec{x} = \vec{y}^\top \vec{B} \vec{y} = 0, \text{ we have:} \\[1mm]
+&\vec{x}^\top \vec{B} \vec{y} + \vec{y}^\top \vec{B} \vec{x} = 0 \quad \Rightarrow \quad \vec{x}^\top \vec{B} \vec{y} = -\,\vec{y}^\top \vec{B} \vec{x} \\[1mm]
+&\text{Take } \vec{x} = \vec{e_1}, \, \vec{y} = \vec{e_2} \text{ (standard basis vectors)}\\[1mm]
+&\vec{e_1}^\top \vec{B} \vec{e_2} = -\, \vec{e_2}^\top \vec{B} \vec{e_1} \quad \Rightarrow \quad b_{ij} = -b_{ji} \\[1mm]
+&\text{Since this holds for all } i,j, \text{ we conclude:} \\[1mm]
+&\boxed{\vec{B}^\top = -\vec{B}}
+\end{align}
+
+Example: 
+\[
+\vec{B} = \myvec{0 & 2 & -1 \\ -2 & 0 & 3 \\ 1 & -3 & 0}
+\]
+\[
+\vec{B}^\top = \myvec{0 & -2 & 1 \\ 2 & 0 & -3 \\ -1 & 3 & 0} = -\,\vec{B}
+\]
+
+
+\end{document}

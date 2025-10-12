@@ -1,0 +1,13 @@
+\frametitle{Python Direct}
+\begin{lstlisting}
+# Check if transpose equals negative of B
+is_skew_symmetric = np.allclose(B_T, neg_B)
+
+print("Matrix B:")
+print(B)
+print("\nTranspose B^T:")
+print(B_T)
+print("\nNegative of B (-B):")
+print(neg_B)
+print("\nIs B skew-symmetric (B^T = -B)?", is_skew_symmetric)
+\end{lstlisting}

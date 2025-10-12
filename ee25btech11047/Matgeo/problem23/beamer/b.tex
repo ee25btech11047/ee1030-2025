@@ -1,0 +1,255 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+	breakable=true,
+	listing engine=minted,
+	listing only,
+	minted language=#2,
+	minted style=default,
+	minted options={%
+		linenos,
+		gobble=0,
+		breaklines=true,
+		breakafter=,,
+		fontsize=\small,
+		numbersep=8pt,
+		#1},
+	boxsep=0pt,
+	left skip=0pt,
+	right skip=0pt,
+	left=25pt,
+	right=0pt,
+	top=3pt,
+	bottom=3pt,
+	arc=5pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=2pt,
+	toprule=2pt,
+	colback=bg,
+	colframe=orange!70,
+	enhanced,
+	overlay={%
+		\begin{tcbclipinterior}
+			\fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+	\end{tcbclipinterior}},
+	#3,
+}
+\lstset{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	commentstyle=\color{green!60!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{12.476}
+%\subtitle{A short story}
+
+\author % (optional)
+{RAVULA SHASHANK REDDY - EE25BTECH11047}
+
+ \begin{document}
+	
+	
+	\frame{\titlepage}
+	\begin{frame}{Question}
+    If
+\begin{align*}
+\vec{A} \vec{B} = \vec{I},
+\end{align*}
+
+then:
+
+\begin{enumerate}[label=\alph*)]
+    \item $\vec{B} = \vec{A}^{\top}$
+    \item $\vec{A} = \vec{B}^{\top}$
+    \item $\vec{B} = \vec{A}^{-1}$
+    \item $\vec{B} = \vec{A}$
+\end{enumerate}
+
+\end{frame}
+\begin{frame}{Solution}
+    Given:
+\begin{align}
+ \vec{A} \vec{B} = \vec{I} 
+ \end{align}
+ 
+Multiply both sides by  $\vec{A}^{-1}$: 
+\begin{align}
+&\vec{A}^{-1} (\vec{A} \vec{B}) = \vec{A}^{-1} \vec{I} \\
+\Rightarrow \quad & (\vec{A}^{-1} \vec{A}) \vec{B} = \vec{A}^{-1} \\
+\Rightarrow \quad & \vec{I} \, \vec{B} = \vec{A}^{-1} \\
+\Rightarrow \quad & \vec{B} = \vec{A}^{-1}
+\end{align}
+\begin{align}
+ \boxed{\vec{B} = \vec{A}^{-1}}.
+\end{align}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    #include <stdio.h>
+
+#define N 3  // size of the square matrices
+
+// Function to multiply two matrices
+void multiply(int A[N][N], int B[N][N], int C[N][N]) {
+    for(int i=0; i<N; i++) {
+        for(int j=0; j<N; j++) {
+            C[i][j] = 0;
+            for(int k=0; k<N; k++)
+                C[i][j] += A[i][k] * B[k][j];
+        }
+    }
+}
+
+// Function to print a matrix
+void printMatrix(int M[N][N]) {
+    for(int i=0; i<N; i++) {
+    \end{lstlisting}
+    \end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+        for(int j=0; j<N; j++)
+            printf("%d ", M[i][j]);
+        printf("\n");
+    }
+}
+
+int main() {
+    // Example matrices
+    int A[N][N] = {{1,0,0},{0,1,0},{0,0,1}};
+    int B[N][N] = {{1,0,0},{0,1,0},{0,0,1}}; // B = inverse of A (identity in this case)
+    int C[N][N];
+
+    multiply(A, B, C);
+
+    printf("Matrix AB:\n");
+    printMatrix(C);
+    \end{lstlisting}
+    \end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    // Check if C is identity
+    int isIdentity = 1;
+    for(int i=0;i<N;i++)
+        for(int j=0;j<N;j++)
+            if((i==j && C[i][j]!=1) || (i!=j && C[i][j]!=0))
+                isIdentity = 0;
+
+    if(isIdentity)
+        printf("Hence, B = A^-1\n");
+    else
+        printf("B is NOT the inverse of A\n");
+
+    return 0;
+}
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+    import numpy as np
+
+# Example 3x3 matrix A
+A = np.array([[2, 1, 1],
+              [1, 2, 1],
+              [1, 1, 2]])
+
+# Suppose B satisfies AB = I
+# Compute B = inverse of A
+B = np.linalg.inv(A)
+
+# Verify AB = I
+AB = np.dot(A, B)
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+print("Matrix A:\n", A)
+print("\nMatrix B (A^-1):\n", B)
+print("\nAB:\n", AB)
+
+# Check if AB is approximately identity
+if np.allclose(AB, np.eye(3)):
+    print("\nHence, B = A^-1")
+else:
+    print("\nB is NOT the inverse of A")
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+    import ctypes
+import numpy as np
+
+N = 3
+
+# Load the shared library
+lib = ctypes.CDLL('./libmatrix.so')
+
+# Define argument types for verify_inverse
+lib.verify_inverse.argtypes = [ctypes.POINTER(ctypes.c_double) for _ in range(2)]
+lib.verify_inverse.restype = ctypes.c_int
+
+# Example matrix A
+A = np.array([[2.0,1.0,1.0],
+              [1.0,2.0,1.0],
+              [1.0,1.0,2.0]])
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+# Compute B = inverse of A using numpy
+B = np.linalg.inv(A)
+
+# Convert numpy arrays to ctypes
+A_ctypes = A.ctypes.data_as(ctypes.POINTER(ctypes.c_double))
+B_ctypes = B.ctypes.data_as(ctypes.POINTER(ctypes.c_double))
+
+# Call C function
+result = lib.verify_inverse(A_ctypes, B_ctypes)
+
+if result:
+    print("AB = I, hence B = A^-1 (Verified in C via ctypes)")
+else:
+    print("B is NOT the inverse of A")
+\end{lstlisting}
+\end{frame}
+\end{document}

@@ -1,0 +1,86 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{article}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\graphicspath{{./figs/}}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}
+\usepackage{gvv}                                        
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{circuitikz}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+text width=4em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{sum} = [draw, fill=blue!10, circle, minimum size=1cm, node distance=1.5cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+
+
+\begin{document}
+	
+	\bibliographystyle{IEEEtran}
+	\vspace{3cm}
+	
+\title{12.164}
+\author{EE25BTECH11047 - RAVULA SHASHANK REDDY}
+\maketitle
+\hrulefill
+\bigskip 
+
+\renewcommand{\thetable}{\theenumi}
+\setlength{\intextsep}{10pt}
+
+\textbf{Question:} \\
+
+Let 
+\begin{align*}
+\vec{A} = \myvec{1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1}.
+\end{align*}
+
+Find the maximum number of linearly independent eigenvectors of \(\vec{A}\).
+
+\textbf{Solution:}\\
+
+Since $\vec{A}$ is a triangular matrix
+\begin{align}
+ & \lambda = 1,1,1 \\
+(\vec{A} - \vec{I})\vec{x} &= \myvec{0 & 1 & 1 \\ 0 & 0 & 1 \\ 0 & 0 & 0} \vec{x} = 0, \quad \vec{x} = \myvec{x \\ y \\ z} \\
+& y + z = 0 \implies y = -z \\
+& z = 0 \implies y = 0 \\
+\vec{x} &= \myvec{x \\ 0 \\ 0} = x \myvec{1 \\ 0 \\ 0}
+\end{align}
+
+
+Maximum number of linearly independent eigenvectors = 1
+
+
+\end{document}

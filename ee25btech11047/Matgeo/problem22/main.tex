@@ -1,0 +1,115 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{article}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\graphicspath{{./figs/}}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}
+\usepackage{gvv}                                        
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{circuitikz}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+text width=4em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{sum} = [draw, fill=blue!10, circle, minimum size=1cm, node distance=1.5cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+
+
+\begin{document}
+	
+	\bibliographystyle{IEEEtran}
+	\vspace{3cm}
+	
+\title{5.9.1}
+\author{EE25BTECH11047 - RAVULA SHASHANK REDDY}
+\maketitle
+\hrulefill
+\bigskip 
+
+\renewcommand{\thetable}{\theenumi}
+\setlength{\intextsep}{10pt}
+
+\textbf{Question:} \\
+
+ Consider the basis 
+\[
+\{\vec{u}_1, \vec{u}_2, \vec{u}_3\} \text{ of } \mathbb{R}^3, \text{ where }
+\vec{u}_1 = \myvec{1\\0\\0}, \ 
+\vec{u}_2 = \myvec{1\\1\\0}, \
+\vec{u}_3 = \myvec{1\\1\\1}.
+\]
+Let $\{\vec{f}_1, \vec{f}_2, \vec{f}_3\}$ be the dual basis and 
+$f(a,b,c) = a+b+c$. If 
+\[
+f = \alpha_1 \vec{f}_1 + \alpha_2 \vec{f}_2 + \alpha_3 \vec{f}_3,
+\] 
+find $\myvec{\alpha_1& \alpha_2 &\alpha_3}$.\\
+
+\textbf{Solution:}\\
+
+The dual basis satisfies :
+\begin{align}
+\vec{f}_i(\vec{u}_j) &= \delta_{ij} = 
+\begin{cases} 
+1, & i=j \\ 
+0, & i\neq j 
+\end{cases}. \label{eq:delta}
+\end{align}
+
+\begin{align}
+\vec{U} &= \myvec{\vec{u}_1 \ \vec{u}_2 \ \vec{u}_3} 
+= \myvec{1 & 1 & 1\\ 0 & 1 & 1\\ 0 & 0 & 1}, \\
+\vec{F} &= \myvec{\vec{f}_1 \\ \vec{f}_2 \\ \vec{f}_3}.
+\end{align}
+
+Then the dual basis condition becomes
+\begin{align}
+\vec{F} \, \vec{U} &= \vec{I_3}. \label{eq:F_U}\\
+\vec{F}^{-1} &= \vec{U} 
+\end{align}
+
+
+\begin{align}
+\vec{f} &= \alpha_1 \vec{f}_1 + \alpha_2 \vec{f}_2 + \alpha_3 \vec{f}_3 
+\implies \vec{f} = \vec{a}^T \vec{F}, \\
+\text{where}\quad\vec{a}&=\myvec{\alpha_1\\ \alpha_2\\\alpha_3} \quad \vec{f}=\myvec{1&1&1}  \\
+\vec{a}^T \vec{F} &= \vec{f} \implies \vec{a}^T = \vec{f} \vec{F}^{-1} = f \vec{U}, \\
+\vec{a}^T &= \myvec{1 & 1 & 1} \myvec{1 & 1 & 1\\ 0 & 1 & 1\\ 0 & 0 & 1} 
+= \myvec{1 & 2 & 3}.
+\end{align}
+
+\begin{align}
+\myvec{\alpha_1\\ \alpha_2\\\alpha_3} = \myvec{1\\2\\3}
+\end{align}
+
+\end{document}

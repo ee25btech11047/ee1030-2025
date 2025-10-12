@@ -1,0 +1,250 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+	breakable=true,
+	listing engine=minted,
+	listing only,
+	minted language=#2,
+	minted style=default,
+	minted options={%
+		linenos,
+		gobble=0,
+		breaklines=true,
+		breakafter=,,
+		fontsize=\small,
+		numbersep=8pt,
+		#1},
+	boxsep=0pt,
+	left skip=0pt,
+	right skip=0pt,
+	left=25pt,
+	right=0pt,
+	top=3pt,
+	bottom=3pt,
+	arc=5pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=2pt,
+	toprule=2pt,
+	colback=bg,
+	colframe=orange!70,
+	enhanced,
+	overlay={%
+		\begin{tcbclipinterior}
+			\fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+	\end{tcbclipinterior}},
+	#3,
+}
+\lstset{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	commentstyle=\color{green!60!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{5.2.49}
+%\subtitle{A short story}
+
+\author % (optional)
+{RAVULA SHASHANK REDDY - EE25BTECH11047}
+
+ \begin{document}
+	
+	
+	\frame{\titlepage}
+	\begin{frame}{Question}
+     Consider the basis 
+\[
+\{\vec{u}_1, \vec{u}_2, \vec{u}_3\} \text{ of } \mathbb{R}^3, \text{ where }
+\vec{u}_1 = \myvec{1\\0\\0}, \ 
+\vec{u}_2 = \myvec{1\\1\\0}, \
+\vec{u}_3 = \myvec{1\\1\\1}.
+\]
+Let $\{\vec{f}_1, \vec{f}_2, \vec{f}_3\}$ be the dual basis and 
+$f(a,b,c) = a+b+c$. If 
+\[
+\vec{f} = \alpha_1 \vec{f}_1 + \alpha_2 \vec{f}_2 + \alpha_3 \vec{f}_3,
+\] 
+find $\myvec{\alpha_1& \alpha_2 &\alpha_3}$.
+\end{frame}
+\begin{frame}{Solution}
+    The dual basis satisfies :
+\begin{align}
+\vec{f}_i(\vec{u}_j) &= \delta_{ij} = 
+\begin{cases} 
+1, & i=j \\ 
+0, & i\neq j 
+\end{cases}. \label{eq:delta}
+\end{align}
+
+\begin{align}
+\vec{U} &= \myvec{\vec{u}_1 \ \vec{u}_2 \ \vec{u}_3} 
+= \myvec{1 & 1 & 1\\ 0 & 1 & 1\\ 0 & 0 & 1}, \\
+\vec{F} &= \myvec{\vec{f}_1 \\ \vec{f}_2 \\ \vec{f}_3}.
+\end{align}
+
+Then the dual basis condition becomes
+\begin{align}
+\vec{F} \, \vec{U} &= \vec{I_3}. \label{eq:F_U}\\
+\vec{F}^{-1} &= \vec{U} 
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+
+\begin{align}
+\vec{f} &= \alpha_1 \vec{f}_1 + \alpha_2 \vec{f}_2 + \alpha_3 \vec{f}_3 
+\implies \vec{f} = \vec{a}^T \vec{F}, \\
+\text{where}\quad\vec{a}&=\myvec{\alpha_1\\ \alpha_2\\\alpha_3} \quad \vec{f}=\myvec{1&1&1}  \\
+\vec{a}^T \vec{F} &= \vec{f} \implies \vec{a}^T = \vec{f} \vec{F}^{-1} = \vec{f} \vec{U}, \\
+\vec{a}^T &= \myvec{1 & 1 & 1} \myvec{1 & 1 & 1\\ 0 & 1 & 1\\ 0 & 0 & 1} 
+= \myvec{1 & 2 & 3}.
+\end{align}
+
+\begin{align}
+\myvec{\alpha_1\\ \alpha_2\\\alpha_3} = \myvec{1\\2\\3}
+\end{align}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    #include <stdio.h>
+
+int main(void) {
+    // Basis matrix U: columns are u1,u2,u3 but stored row-major U[row][col]
+    double U[3][3] = {
+        {1.0, 1.0, 1.0},
+        {0.0, 1.0, 1.0},
+        {0.0, 0.0, 1.0}
+    };
+
+    // f as row vector (f = (1,1,1))
+    double f[3] = {1.0, 1.0, 1.0};
+
+    // alpha will store the row vector alpha = f * U
+    double alpha[3] = {0.0, 0.0, 0.0};
+
+    // Compute alpha_j = sum_k f_k * U[k][j]
+    \end{lstlisting}
+    \end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    for (int j = 0; j < 3; ++j) {
+        double sum = 0.0;
+        for (int k = 0; k < 3; ++k) {
+            sum += f[k] * U[k][j];
+        }
+        alpha[j] = sum;
+    }
+
+    // Print result
+    printf("alpha = (");
+    for (int j = 0; j < 3; ++j) {
+        printf("%.0f", alpha[j]);            // integer values expected, print without decimals
+        if (j < 2) printf(", ");
+    }
+    printf(")\n");
+
+    return 0;
+}
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+    import numpy as np
+
+# Given basis matrix U
+U = np.array([
+    [1, 1, 1],
+    [0, 1, 1],
+    [0, 0, 1]
+], dtype=float)
+
+# Given linear functional f(a,b,c) = a + b + c
+f = np.array([1, 1, 1], dtype=float)
+
+# Compute alpha^T = f * U
+alpha = f @ U   # matrix multiplication
+
+print("alpha =", alpha)
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+    import ctypes
+import numpy as np
+
+# Load the shared library
+lib = ctypes.CDLL("./libalpha.so")
+
+# Define argument and return types
+lib.compute_alpha.argtypes = [
+    (ctypes.c_double * 3 * 3),  # 3x3 matrix
+    (ctypes.c_double * 3),      # f vector
+    (ctypes.c_double * 3)       # output alpha
+]
+
+# Prepare data
+U = np.array([
+    [1.0, 1.0, 1.0],
+    [0.0, 1.0, 1.0],
+    [0.0, 0.0, 1.0]
+    \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+\begin{lstlisting}
+], dtype=np.double)
+
+f = np.array([1.0, 1.0, 1.0], dtype=np.double)
+alpha = np.zeros(3, dtype=np.double)
+
+# Convert numpy arrays to ctypes
+U_ctypes = (ctypes.c_double * 3 * 3)(*map(lambda row: (ctypes.c_double * 3)(*row), U))
+f_ctypes = (ctypes.c_double * 3)(*f)
+alpha_ctypes = (ctypes.c_double * 3)(*alpha)
+
+# Call C function
+lib.compute_alpha(U_ctypes, f_ctypes, alpha_ctypes)
+
+# Convert result back to numpy array
+alpha_result = np.array(list(alpha_ctypes))
+
+print("alpha =", alpha_result)
+\end{lstlisting}
+\end{frame}
+\end{document}

@@ -1,0 +1,98 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{article}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\graphicspath{{./figs/}}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}
+\usepackage{gvv}                                        
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{circuitikz}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+text width=4em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{sum} = [draw, fill=blue!10, circle, minimum size=1cm, node distance=1.5cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+
+
+\begin{document}
+	
+	\bibliographystyle{IEEEtran}
+	\vspace{3cm}
+	
+\title{12.476}
+\author{EE25BTECH11047 - RAVULA SHASHANK REDDY}
+\maketitle
+\hrulefill
+\bigskip 
+
+\renewcommand{\thetable}{\theenumi}
+\setlength{\intextsep}{10pt}
+
+\textbf{Question:} \\
+
+If
+\begin{align*}
+\vec{A} \vec{B} = \vec{I},
+\end{align*}
+
+then:
+
+\begin{multicols}{4}
+\begin{enumerate}[label=\alph*)]
+    \item $\vec{B} = \vec{A}^{\top}$
+    \item $\vec{A} = \vec{B}^{\top}$
+    \item $\vec{B} = \vec{A}^{-1}$
+    \item $\vec{B} = \vec{A}$
+\end{enumerate}
+\end{multicols}
+
+\textbf{Solution:}\\
+
+Given:
+\begin{align}
+ \vec{A} \vec{B} = \vec{I} 
+ \end{align}
+ 
+Multiply both sides by  $\vec{A}^{-1}$: 
+\begin{align}
+&\vec{A}^{-1} (\vec{A} \vec{B}) = \vec{A}^{-1} \vec{I} \\
+\Rightarrow \quad & (\vec{A}^{-1} \vec{A}) \vec{B} = \vec{A}^{-1} \\
+\Rightarrow \quad & \vec{I} \, \vec{B} = \vec{A}^{-1} \\
+\Rightarrow \quad & \vec{B} = \vec{A}^{-1}
+\end{align}
+\begin{align}
+ \boxed{\vec{B} = \vec{A}^{-1}}.
+\end{align}
+
+\end{document}

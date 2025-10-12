@@ -1,0 +1,13 @@
+\frametitle{Python Direct}
+\begin{lstlisting}
+print("\nEigenvectors corresponding to λ = 1:")
+if null_space.size == 0:
+    print("No eigenvectors found.")
+else:
+    print(null_space.T)
+
+# Step 4: Number of linearly independent eigenvectors
+num_independent = null_space.shape[0]
+print(f"\nMaximum number of linearly independent eigenvectors = {num_independent}")
+
+\end{lstlisting}

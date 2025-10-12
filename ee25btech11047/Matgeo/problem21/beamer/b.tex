@@ -1,0 +1,199 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+	breakable=true,
+	listing engine=minted,
+	listing only,
+	minted language=#2,
+	minted style=default,
+	minted options={%
+		linenos,
+		gobble=0,
+		breaklines=true,
+		breakafter=,,
+		fontsize=\small,
+		numbersep=8pt,
+		#1},
+	boxsep=0pt,
+	left skip=0pt,
+	right skip=0pt,
+	left=25pt,
+	right=0pt,
+	top=3pt,
+	bottom=3pt,
+	arc=5pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=2pt,
+	toprule=2pt,
+	colback=bg,
+	colframe=orange!70,
+	enhanced,
+	overlay={%
+		\begin{tcbclipinterior}
+			\fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+	\end{tcbclipinterior}},
+	#3,
+}
+\lstset{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	commentstyle=\color{green!60!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{12.268}
+%\subtitle{A short story}
+
+\author % (optional)
+{RAVULA SHASHANK REDDY - EE25BTECH11047}
+
+ \begin{document}
+	
+	
+	\frame{\titlepage}
+	\begin{frame}{Question}
+    A $3 \times 3$ matrix has elements such that its trace is $11$ and its determinant is $36$. The eigenvalues of the matrix are all known to be positive integers. Find the largest eigenvalue of the matrix.
+\end{frame}
+\begin{frame}{Solution}
+    Let the eigenvalues of the $3 \times 3$ matrix $\vec{A}$ be $\lambda_1, \lambda_2, \lambda_3$.  
+
+We are given:
+\begin{align}
+\text{trace}(\vec{A}) = \lambda_1 + \lambda_2 + \lambda_3 = 11,\\ 
+\det(\vec{A}) = \lambda_1 \lambda_2 \lambda_3 = 36\\
+\lambda_1, \lambda_2, \lambda_3 > 0
+\end{align}
+
+Check the possible factor triplets of 36 and their sums:
+\begin{align}
+1 + 4 + 9 &= 14 \not=11 \\
+2 + 2 + 9 &= 13 \not=11\\
+2 + 3 + 6 &= 11 \\
+3 + 3 + 4 &= 10 \not=11
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+Hence, the eigenvalues are:
+\begin{align}
+\myvec{\lambda_1 \\ \lambda_2 \\ \lambda_3} = \myvec{2 \\ 3 \\ 6}.
+\end{align}
+
+Thus, the largest eigenvalue is:
+\[
+\lambda_{\max} = 6.
+\]
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+    \begin{lstlisting}
+        #include <stdio.h>
+
+int main() {
+    int trace = 11;
+    int det = 36;
+    int i, j, k;
+
+    printf("The positive integer eigenvalues are:\n");
+
+    for(i = 1; i <= trace; i++) {           // possible first eigenvalue
+        for(j = 1; j <= trace - i; j++) {   // second eigenvalue
+            k = trace - i - j;              // third eigenvalue from trace
+            if(k > 0 && i * j * k == det) { // check product = determinant
+                printf("Eigenvalues: %d, %d, %d\n", i, j, k);
+                \end{lstlisting}
+                \end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+    \begin{lstlisting}
+                int max = i;
+                if(j > max) max = j;
+                if(k > max) max = k;
+                printf("Largest eigenvalue: %d\n", max);
+            }
+        }
+    }
+
+    return 0;
+}
+    \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Code}
+    \begin{lstlisting}
+import numpy as np
+
+trace = 11       # sum of eigenvalues
+det = 36         # product of eigenvalues
+
+valid_eigenvalues = []
+
+# Loop over all possible positive integers for first two eigenvalues
+for i in range(1, trace + 1):
+    for j in range(1, trace - i + 1):
+        k = trace - i - j
+        if k > 0 and i * j * k == det:
+            eigenvalues = np.array([i, j, k])
+            valid_eigenvalues.append(eigenvalues)
+            print("Eigenvalues:", eigenvalues)
+            print("Largest eigenvalue:", np.max(eigenvalues))
+if valid_eigenvalues:
+    largest_overall = max(np.max(triplet) for triplet in valid_eigenvalues)
+    print("Largest eigenvalue among all triplets:", largest_overall)        
+    \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Shared}
+    \begin{lstlisting}
+        import ctypes
+
+# Load the shared library
+lib = ctypes.CDLL('./eigen.so')
+
+# Define the function argument and return types
+lib.find_largest_eigen.argtypes = [ctypes.c_int, ctypes.c_int]
+lib.find_largest_eigen.restype = ctypes.c_int
+
+# Inputs
+trace = 11
+det = 36
+
+# Call the C function
+largest = lib.find_largest_eigen(trace, det)
+
+print(f"Largest eigenvalue for trace={trace}, det={det} is: {largest}")
+    \end{lstlisting}
+\end{frame}
+\end{document}

@@ -1,0 +1,111 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{article}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\graphicspath{{./figs/}}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}
+\usepackage{gvv}                                        
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{circuitikz}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+text width=4em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{sum} = [draw, fill=blue!10, circle, minimum size=1cm, node distance=1.5cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+
+
+\begin{document}
+	
+	\bibliographystyle{IEEEtran}
+	\vspace{3cm}
+	
+\title{12.580}
+\author{EE25BTECH11047 - RAVULA SHASHANK REDDY}
+\maketitle
+\hrulefill
+\bigskip 
+
+\renewcommand{\thetable}{\theenumi}
+\setlength{\intextsep}{10pt}
+
+\textbf{Question:} \\
+
+Let \(\vec{V}\) be the vector space of all \(3 \times 3\) matrices with complex entries over the real field. If  
+\[
+\vec{W_1} = \{\vec{A} \in \vec{V} : \vec{A} = \overline{\vec{A}}^\top \} \quad \text{and} \quad \vec{W_2} = \{\vec{A} \in \vec{V} : \mathrm{trace}(\vec{A}) = 0\},
+\]  
+then find \(\dim(\vec{W_1} + \vec{W_2})\).\\
+
+
+\textbf{Solution:}
+\begin{align}
+\vec{V} &= \text{all } 3 \times 3 \text{ complex matrices over } \mathbb{R} 
+\end{align}
+
+For one complex element 2 real parameters are required.
+\begin{align}
+\dim_\mathbb{R}(\vec{V}) &= 3 \times 3 \times 2 = 18
+\end{align}
+
+\begin{align}
+\vec{W_1} &= \{\vec{A} \in \vec{V}: \vec{A} = \overline{\vec{A}}^\top \} \\
+\vec{A} = \myvec{a_{11} & a_{12} & a_{13} \\
+\overline{a_{12}}& a_{22} & a_{23} \\
+\overline{a_{13}} &\overline{a_{23}}& a_{33} }
+a_{ii} &\in \mathbb{R}, \quad a_{ij} \in \mathbb{C}, \; i<j \\
+\dim_\mathbb{R}(\vec{W_1}) &= 3 + 3 \times 2 = 9
+\end{align}
+
+\begin{align}
+\vec{W_2} &= \{\vec{A} \in \vec{V}: \mathrm{trace}(\vec{A}) = 0\} 
+\end{align}
+
+So one element along diagonal has constraint.
+\begin{align}
+\dim_\mathbb{R}(\vec{W_2}) &= ((3 \times 3)-1) \times 2  = 16
+\end{align}
+
+\begin{align}
+\dim_\mathbb{R}(\vec{W_1} \cap \vec{W_2}) &= 9 - 1 = 8
+\end{align}
+
+\begin{align}
+\dim(\vec{W_1} + \vec{W_2}) &= \dim(\vec{W_1}) + \dim(\vec{W_2}) - \dim(\vec{W_1} \cap \vec{W_2}) \\
+&= 9 + 16 - 8 \\
+&= 17
+\end{align}
+
+
+\end{document}
+

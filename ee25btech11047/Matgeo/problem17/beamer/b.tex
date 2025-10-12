@@ -74,7 +74,7 @@
 %This block of code defines the information to appear in the
 %Title page
 \title %optional
-{5.2.49}
+{10.6.2}
 %\subtitle{A short story}
 
 \author % (optional)
@@ -88,155 +88,169 @@
     Construct a pair of tangents to a circle of radius \(4\,\text{cm}\) from a point \(P\) at a distance of \(7\,\text{cm}\) from its centre \(O\).
 \end{frame}
 \begin{frame}{Solution}
-   Given:\\
-
-Let the centre be origin and P lies on x axis. 
+ The tangent directions \(\vec{m}\) from an external point \(\vec{h}\) to the circle 
 \begin{align}
-\vec{x}^T\vec{x} = 16 \label{eq1} \\
-\vec{P} = \myvec{7\\0}, 
+g(\vec{x}) = \vec{x}^\top \vec{x} - r^2 = 0
 \end{align}
 
-Equation of a line through  $\vec{P}$  with direction  $\vec{d}$:
+satisfy 
 \begin{align}
-&\vec{x} = \vec{P} + t\vec{d}, 
-\quad t\in\mathbb{R}.
-\label{eq2}
-\end{align}
-\begin{align}
-\text{Substitute} \quad \eqref{eq2} in \eqref{eq1}:
-(\vec{P}+t\vec{d})^T(\vec{P}+t\vec{d}) = 16 \nonumber\\
-\Rightarrow 
-(\vec{d}^T\vec{d})t^2 
-+ 2(\vec{P}^T\vec{d})t 
-+ (\vec{P}^T\vec{P} - 16) = 0
-\label{eq3}
+\vec{m}^\top \vec{\Phi} \vec{m} = 0
 \end{align}
 
-For tangency, discriminant = 0: 
+where 
 \begin{align}
-(2\vec{P}^T\vec{d})^2 
-- 4(\vec{d}^T\vec{d})(\vec{P}^T\vec{P} - 16) = 0 \nonumber\\
-\Rightarrow 
-(\vec{P}^T\vec{d})^2 
-= (\vec{d}^T\vec{d})(\vec{P}^T\vec{P} - 16)
-\label{eq4}
+\vec{\Phi} &= \vec{h}\vec{h}^\top - g(\vec{h})\vec{I} \label{eq:sigma_def}
+\end{align}
+
+With the point \(\vec{h} = d\vec{e}_1\), we have \(g(\vec{h}) = d^2 - r^2\). From \eqref{eq:sigma_def},
+\begin{align}
+\vec{\Phi} &= 
+\myvec{
+d^2 & 0 \\
+0 & 0
+}
+-
+(d^2 - r^2)
+\myvec{
+1 & 0 \\
+0 & 1
+}
+\\
+&=
+\myvec{
+r^2 & 0 \\
+0 & -(d^2 - r^2)
+} \label{eq:sigma_matrix}
+\end{align}
+
+Since \(\vec{\Phi}\) is a diagonal matrix, its eigenvalues are:
+\begin{align}
+\lambda_1 &= r^2, \quad \lambda_2 = -(d^2 - r^2) \label{eq:eigenvalues}
 \end{align}
 \end{frame}
 \begin{frame}{Solution}
+The matrix of orthonormal eigenvectors is 
+\[
+\vec{P} = \vec{I}
+\]
+
+Hence, the unit direction vectors of the tangents are given by:
 \begin{align}
-\vec{P}^T\vec{P} &= 49, \\
-(\vec{P}^T\vec{d})^2 &= 33(\vec{d}^T\vec{d}).\\
-\text{For a unit vector } \vec{d},\nonumber\\ 
-\ \vec{d}^T\vec{d} &= 1 
-\Rightarrow 
-(\vec{P}^T\vec{d})^2 = 33
-\label{eq5}
+\vec{m} = \frac{1}{\sqrt{\lambda_1 - \lambda_2}} \, \vec{P} 
+\myvec{
+\sqrt{-\lambda_2} \\[4pt]
+\pm \sqrt{\lambda_1}
+}
+\label{eq:m_general}
 \end{align}
 
-Let
+From \eqref{eq:eigenvalues},
 \begin{align}
-\vec{M} = \vec{P}\vec{P}^T\implies 
-\vec{d}^T\vec{M}\vec{d} &= (\vec{P}^T\vec{d})^2 \\ 
-\vec{d}^T\vec{M}\vec{d} = 33, 
-\label{eq6}
+\lambda_1 - \lambda_2 &= r^2 - (-(d^2 - r^2)) = d^2 \\
+-\lambda_2 &= d^2 - r^2
 \end{align}
 
+Substituting into \eqref{eq:m_general}:
 \begin{align}
-\vec{M} 
-= \vec{P}\vec{P}^T 
-= 
-\myvec{7\\0}\myvec{7 & 0}
-= 
-\myvec{49 & 0\\0 & 0}
-\label{eq7}
+\vec{m} 
+&= \frac{1}{\sqrt{d^2}} 
+\myvec{
+\sqrt{d^2 - r^2} \\[4pt]
+\pm r
+}
+\\
+&= \frac{1}{d}
+\myvec{
+\sqrt{d^2 - r^2} \\[4pt]
+\pm r
+}
+\label{eq:m_final}
 \end{align}
 \end{frame}
 \begin{frame}{Solution}
-Eigen values and Eigen vectors of M:
+The points of contact are given by 
 \begin{align}
-\lambda_1 &= 49, 
-\ \lambda_2 = 0. \nonumber\\
-\vec{e}_1 &= \myvec{1\\0}, 
-\quad 
-\vec{e}_2 = \myvec{0\\1}
-\label{eq8}
+\vec{q} = \vec{h} + \kappa \vec{m}
 \end{align}
 
-$\vec{d}$ in orthonormal Eigenbasis : \quad $\vec{d}^T\vec{d} = 1$
- \begin{align}
-\vec{d} 
-= \alpha\vec{e}_1 + \beta\vec{e}_2, 
-\quad 
-\alpha^2 + \beta^2 = 1
-\label{eq9}\\
-\vec{d}^T\vec{M}\vec{d} 
-= \lambda_1\alpha^2 + \lambda_2\beta^2 \\
-\Rightarrow 
-\vec{d}^T\vec{M}\vec{d} 
-= 49\alpha^2 + 0\cdot\beta^2 
-= 49\alpha^2
-\label{eq10}\\
-From \quad \eqref{eq6}, 
-49\alpha^2 = 33 
-\Rightarrow 
-\alpha &= \pm\frac{\sqrt{33}}{7}. \\
-\Rightarrow 
-\beta = \pm\frac{4}{7}
-\label{eq11}
+Satisfies the circle equation
+\begin{align}
+g(\vec{h} + \kappa\vec{m}) 
+&= (\vec{h} + \kappa\vec{m})^\top (\vec{h} + \kappa\vec{m}) - r^2 = 0 \\
+&\implies 
+\kappa^2 (\vec{m}^\top \vec{m}) + 2\kappa(\vec{h}^\top \vec{m}) + g(\vec{h}) = 0
+\end{align}
+
+For a tangent, \(\kappa\) has a single repeated root.
+Since \(\vec{m}\) is a unit vector (\(\vec{m}^\top \vec{m} = 1\)):
+\begin{align}
+\kappa &= -(\vec{h}^\top \vec{m}) \label{eq:kappa_def}
+\end{align}
+
+\begin{align}
+\vec{h}^\top \vec{m} 
+&= (d\vec{e}_1)^\top 
+\frac{1}{d}
+\myvec{
+\sqrt{d^2 - r^2} \\[4pt]
+\pm r
+}
+= \sqrt{d^2 - r^2} 
+\end{align}
+
+Hence,
+\[
+\kappa = -\sqrt{d^2 - r^2}
+\]
+\end{frame}
+\begin{frame}{Solution}
+The points of contact are:
+\begin{align}
+\vec{q} 
+&= d\vec{e}_1 - \sqrt{d^2 - r^2}
+\frac{1}{d}
+\myvec{
+\sqrt{d^2 - r^2} \\[4pt]
+\pm r
+}
+\\[6pt]
+&=
+\myvec{
+\dfrac{r^2}{d} \\[6pt]
+\mp \dfrac{r\sqrt{d^2 - r^2}}{d}
+}
+\label{eq:points}
+\end{align}
+
+\textbf{Substituting \(r = 4, \; d = 7\):}
+\begin{align}
+\sqrt{d^2 - r^2} &= \sqrt{49 - 16} = \sqrt{33} \\
+\vec{q} 
+&=
+\myvec{
+\dfrac{16}{7} \\[6pt]
+\mp \dfrac{4\sqrt{33}}{7}
+}
 \end{align}
 \end{frame}
 \begin{frame}{Solution}
-Hence $\vec{d}$ is:
-\begin{align}
-&\therefore 
-\vec{d}
-= 
-\myvec{\frac{\sqrt{33}}{7}\\[3pt]\pm\frac{4}{7}}
-\label{eq12}
-\end{align}
-
-From $\eqref{eq3}$ and $\eqref{eq5}$
-\begin{align}
-t &= -\frac{\vec{P}^T\vec{d}}{\vec{d}^T\vec{d}}. \nonumber\\
-\Rightarrow 
-t &= -\sqrt{33}
-\label{eq13}
-\end{align}
-
-Required Points of Contact
-\begin{align}
-\vec{T} 
-&= \vec{P} + t\vec{d} 
-= \vec{P} - \sqrt{33}\vec{d}
-\label{eq14}\\
-\vec{P} &= \myvec{7\\0}, 
- \vec{d} = 
-\myvec{\frac{\sqrt{33}}{7}\\[3pt]\pm\frac{4}{7}}: \\
-\vec{T} 
-&= 
-\myvec{7\\0} 
-- \sqrt{33}
-\myvec{\frac{\sqrt{33}}{7}\\[3pt]\pm\frac{4}{7}} 
-= 
-\myvec{\frac{16}{7}\\[3pt]\mp\frac{4\sqrt{33}}{7}}
-\label{eq15}
-\end{align}
-\end{frame}
-\begin{frame}{Solution}
-    \begin{align}
-\vec{T}_1 &= \myvec{\frac{16}{7}\\[3pt]\frac{4\sqrt{33}}{7}}, 
-\quad 
-\vec{T}_2 = \myvec{\frac{16}{7}\\[3pt]-\frac{4\sqrt{33}}{7}}
-\label{eq16}
-\end{align}
-
-
-Equation of tangents :
-\begin{align}
-\vec{x}= \myvec{7 & 0}^T +k\myvec{\frac{\sqrt{33}}{7}&\frac{4}{7}}^T\\
-\vec{x}= \myvec{7 & 0}^T +k\myvec{\frac{\sqrt{33}}{7}&-\frac{4}{7}}^T
-\end{align}
-
+Thus, the points of contact of the tangents are:
+\[
+\boxed{
+\vec{q}_1 = 
+\myvec{
+\dfrac{16}{7} \\[4pt]
+\dfrac{4\sqrt{33}}{7}
+}, 
+\quad
+\vec{q}_2 =
+\myvec{
+\dfrac{16}{7} \\[4pt]
+-\dfrac{4\sqrt{33}}{7}
+}
+}
+\]
 \end{frame}
 \begin{frame}[fragile]
 \frametitle{C Code}

@@ -1,0 +1,228 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+	breakable=true,
+	listing engine=minted,
+	listing only,
+	minted language=#2,
+	minted style=default,
+	minted options={%
+		linenos,
+		gobble=0,
+		breaklines=true,
+		breakafter=,,
+		fontsize=\small,
+		numbersep=8pt,
+		#1},
+	boxsep=0pt,
+	left skip=0pt,
+	right skip=0pt,
+	left=25pt,
+	right=0pt,
+	top=3pt,
+	bottom=3pt,
+	arc=5pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=2pt,
+	toprule=2pt,
+	colback=bg,
+	colframe=orange!70,
+	enhanced,
+	overlay={%
+		\begin{tcbclipinterior}
+			\fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+	\end{tcbclipinterior}},
+	#3,
+}
+\lstset{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	commentstyle=\color{green!60!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	showstringspaces=false,
+}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{12.164}
+%\subtitle{A short story}
+
+\author % (optional)
+{RAVULA SHASHANK REDDY - EE25BTECH11047}
+
+ \begin{document}
+	
+	
+	\frame{\titlepage}
+	\begin{frame}{Question}
+    Let 
+\begin{align*}
+\vec{A} = \myvec{1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1}.
+\end{align*}
+
+Find the maximum number of linearly independent eigenvectors of \(\vec{A}\).
+\end{frame}
+\begin{frame}{Solution}
+    Since $\vec{A}$ is a triangular matrix
+\begin{align}
+ & \lambda = 1,1,1 \\
+(\vec{A} - \vec{I})\vec{x} &= \myvec{0 & 1 & 1 \\ 0 & 0 & 1 \\ 0 & 0 & 0} \vec{x} = 0, \quad \vec{x} = \myvec{x \\ y \\ z} \\
+& y + z = 0 \implies y = -z \\
+& z = 0 \implies y = 0 \\
+\vec{x} &= \myvec{x \\ 0 \\ 0} = x \myvec{1 \\ 0 \\ 0}
+\end{align}
+
+
+Maximum number of linearly independent eigenvectors = 1
+
+
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    #include <stdio.h>
+#include <math.h>
+
+int main() {
+    // Matrix A
+    double A[3][3] = {
+        {1, 1, 1},
+        {0, 1, 1},
+        {0, 0, 1}
+    };
+
+    // Step 1: Since A is upper triangular, eigenvalues are diagonal elements
+    double lambda[3];
+    for (int i = 0; i < 3; i++) {
+        lambda[i] = A[i][i];
+    }
+
+    printf("Eigenvalues:\n");
+    \end{lstlisting}
+    \end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+    for (int i = 0; i < 3; i++) {
+        printf("λ%d = %.2f\n", i+1, lambda[i]);
+    }
+
+    // Step 2: All eigenvalues are equal (1), find eigenvectors for λ = 1
+    // (A - I)
+    double AI[3][3];
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            AI[i][j] = A[i][j];
+            if (i == j) AI[i][j] -= 1.0;
+        }
+    }
+
+    printf("\nMatrix (A - I):\n");
+    for (int i = 0; i < 3; i++) {
+     \end{lstlisting}
+    \end{frame}
+\begin{frame}[fragile]
+\frametitle{C Code}
+\begin{lstlisting}
+        for (int j = 0; j < 3; j++) {
+            printf("%6.2f ", AI[i][j]);
+        }
+        
+        printf("\n");
+    }
+
+    // From manual solving:
+    // x3 = 0, x2 = 0, x1 = free → 1 eigenvector
+    printf("\nEigenvector corresponding to λ = 1:\n");
+    printf("v1 = [1 0 0]^T\n");
+
+    printf("\nMaximum number of linearly independent eigenvectors = 1\n");
+    return 0;
+}
+
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+    import numpy as np
+
+# Define matrix A
+A = np.array([
+    [1, 1, 1],
+    [0, 1, 1],
+    [0, 0, 1]
+], dtype=float)
+
+# Step 1: Eigenvalues
+eigenvalues, _ = np.linalg.eig(A)
+print("Eigenvalues:")
+for i, val in enumerate(eigenvalues, start=1):
+    print(f"λ{i} = {val:.2f}")
+
+# Step 2: For eigenvalue = 1, compute (A - I)
+I = np.eye(3)
+AI = A - I
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+print("\nMatrix (A - I):")
+print(AI)
+
+# Step 3: Find null space to get eigenvectors
+# (A - I)x = 0 → eigenvectors for λ = 1
+u, s, vh = np.linalg.svd(AI)
+tol = 1e-10
+null_mask = (s <= tol)
+null_space = np.compress(null_mask, vh, axis=0)
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Python Direct}
+\begin{lstlisting}
+print("\nEigenvectors corresponding to λ = 1:")
+if null_space.size == 0:
+    print("No eigenvectors found.")
+else:
+    print(null_space.T)
+
+# Step 4: Number of linearly independent eigenvectors
+num_independent = null_space.shape[0]
+print(f"\nMaximum number of linearly independent eigenvectors = {num_independent}")
+
+\end{lstlisting}
+\end{frame}
+
+\end{document}
