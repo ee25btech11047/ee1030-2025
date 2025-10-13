@@ -71,7 +71,7 @@ text width=4em, text centered, rounded corners, minimum height=3em]
 Let $\{\vec{f}_1, \vec{f}_2, \vec{f}_3\}$ be the dual basis and 
 $f(a,b,c) = a+b+c$. If 
 \[
-f = \alpha_1 \vec{f}_1 + \alpha_2 \vec{f}_2 + \alpha_3 \vec{f}_3,
+\vec{f}= \alpha_1 \vec{f}_1 + \alpha_2 \vec{f}_2 + \alpha_3 \vec{f}_3,
 \] 
 find $\myvec{\alpha_1& \alpha_2 &\alpha_3}$.\\
 
@@ -98,12 +98,19 @@ Then the dual basis condition becomes
 \vec{F}^{-1} &= \vec{U} 
 \end{align}
 
+Given:
+\begin{align}
+f\myvec{a,b,c}&=a+b+c=\myvec{1&1&1}\myvec{a\\b\\c}\\
+f(\vec{x})&=\vec{f}\vec{x} \\
+\text{where}\quad \vec{f}&=\myvec{1&1&1}
+\end{align}
 
+Also given that
 \begin{align}
 \vec{f} &= \alpha_1 \vec{f}_1 + \alpha_2 \vec{f}_2 + \alpha_3 \vec{f}_3 
 \implies \vec{f} = \vec{a}^T \vec{F}, \\
-\text{where}\quad\vec{a}&=\myvec{\alpha_1\\ \alpha_2\\\alpha_3} \quad \vec{f}=\myvec{1&1&1}  \\
-\vec{a}^T \vec{F} &= \vec{f} \implies \vec{a}^T = \vec{f} \vec{F}^{-1} = f \vec{U}, \\
+\text{where}\quad\vec{a}&=\myvec{\alpha_1\\ \alpha_2\\\alpha_3} \quad  \\
+\vec{a}^T \vec{F} &= \vec{f} \implies \vec{a}^T = \vec{f} \vec{F}^{-1} = \vec{f} \vec{U}, \\
 \vec{a}^T &= \myvec{1 & 1 & 1} \myvec{1 & 1 & 1\\ 0 & 1 & 1\\ 0 & 0 & 1} 
 = \myvec{1 & 2 & 3}.
 \end{align}

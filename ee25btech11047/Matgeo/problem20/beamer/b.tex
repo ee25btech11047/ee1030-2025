@@ -97,8 +97,13 @@ Find the maximum number of linearly independent eigenvectors of \(\vec{A}\).
 \begin{align}
  & \lambda = 1,1,1 \\
 (\vec{A} - \vec{I})\vec{x} &= \myvec{0 & 1 & 1 \\ 0 & 0 & 1 \\ 0 & 0 & 0} \vec{x} = 0, \quad \vec{x} = \myvec{x \\ y \\ z} \\
-& y + z = 0 \implies y = -z \\
-& z = 0 \implies y = 0 \\
+&\implies \myvec{0 & 1 & 1 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0}\\
+&R_1\rightarrow{R_1-R_2}\implies \myvec{0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0}\\
+& z = 0 , y = 0 
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+\begin{align}
 \vec{x} &= \myvec{x \\ 0 \\ 0} = x \myvec{1 \\ 0 \\ 0}
 \end{align}
 

@@ -74,7 +74,7 @@
 %This block of code defines the information to appear in the
 %Title page
 \title %optional
-{5.2.49}
+{12.372}
 %\subtitle{A short story}
 
 \author % (optional)
@@ -123,15 +123,24 @@ Then the dual basis condition becomes
 \end{frame}
 \begin{frame}{Solution}
 
+Given:
+\begin{align}
+f\myvec{a,b,c}&=a+b+c=\myvec{1&1&1}\myvec{a\\b\\c}\\
+f(\vec{x})&=\vec{f}\vec{x} \\
+\text{where}\quad \vec{f}&=\myvec{1&1&1}
+\end{align}
+
+Also given that
 \begin{align}
 \vec{f} &= \alpha_1 \vec{f}_1 + \alpha_2 \vec{f}_2 + \alpha_3 \vec{f}_3 
 \implies \vec{f} = \vec{a}^T \vec{F}, \\
-\text{where}\quad\vec{a}&=\myvec{\alpha_1\\ \alpha_2\\\alpha_3} \quad \vec{f}=\myvec{1&1&1}  \\
+\text{where}\quad\vec{a}&=\myvec{\alpha_1\\ \alpha_2\\\alpha_3} \quad  \\
 \vec{a}^T \vec{F} &= \vec{f} \implies \vec{a}^T = \vec{f} \vec{F}^{-1} = \vec{f} \vec{U}, \\
 \vec{a}^T &= \myvec{1 & 1 & 1} \myvec{1 & 1 & 1\\ 0 & 1 & 1\\ 0 & 0 & 1} 
 = \myvec{1 & 2 & 3}.
 \end{align}
-
+\end{frame}
+\begin{frame}{Solution}
 \begin{align}
 \myvec{\alpha_1\\ \alpha_2\\\alpha_3} = \myvec{1\\2\\3}
 \end{align}
